@@ -1,11 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
+
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject gameOverScreen;
-    [SerializeField] private TMP_Text scoreText;
     [SerializeField] private float initialScrollSpeed;
 
     private int score;
@@ -49,7 +48,6 @@ public class GameManager : MonoBehaviour
 
         timer += Time.deltaTime;
         score = (int)(timer * scorePerSeconds);
-        scoreText.text = string.Format("{0:00000}", score);
     }
 
     public float GetScrollSpeed()
