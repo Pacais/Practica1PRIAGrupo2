@@ -288,8 +288,8 @@ Transform:
   m_GameObject: {fileID: 368145522}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.96, y: -1.6159, z: 0}
-  m_LocalScale: {x: 27.2187, y: 0.16436818, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 28, y: 0.15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -306,6 +306,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83864b2d721094944ae3f98e20d42c77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AnchoSuelo: 0
+  suelo: {fileID: 0}
+  groundCollider: {fileID: 368145524}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,7 +569,7 @@ Transform:
   m_GameObject: {fileID: 1324640948}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.49, y: -1.3295, z: 0}
+  m_LocalPosition: {x: 3.49, y: 0.25, z: 0}
   m_LocalScale: {x: 0.7049, y: 0.7247, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -605,6 +608,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83864b2d721094944ae3f98e20d42c77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AnchoSuelo: 27
+  suelo: {fileID: 0}
+  groundCollider: {fileID: 2091878944}
 --- !u!50 &2091878943
 Rigidbody2D:
   serializedVersion: 4
@@ -750,8 +756,8 @@ Transform:
   m_GameObject: {fileID: 2091878941}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.25, y: -1.6159, z: 0}
-  m_LocalScale: {x: 27.2187, y: 0.16436818, z: 1}
+  m_LocalPosition: {x: 28, y: 0, z: 0}
+  m_LocalScale: {x: 28, y: 0.15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

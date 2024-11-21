@@ -5,15 +5,21 @@ using UnityEngine;
 public class MovimientoEscenario : MonoBehaviour
 {
     private float VMovimiento = 8f;
-    // Start is called before the first frame update
+    private Vector3 currentposition;
+    
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        transform.Translate(Vector2.left * VMovimiento * Time.deltaTime);
+        transform.Translate(Vector3.left * VMovimiento * Time.deltaTime);
+
+        if(transform.position.x <= -transform.localScale.x)
+        {
+            transform.Translate(Vector3.right * transform.localScale.x * 2f);
+        }
     }
 }
