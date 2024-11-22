@@ -4,15 +4,32 @@ using UnityEngine;
 
 public class Scripts : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private bool isSpawning;   
+    private float minWait;
+    private float maxWait;
+    public GameObject obstaculoPrefab;
+    public GameObject spawnerObstaculos;
     void Start()
     {
-        
+        isSpawning = false;
+        minWait = 1f;
+        maxWait = 2.5f;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        
+     if (!isSpawning)
+     {
+        float timer = Random.Range(minWait, maxWait);
+        Invoke("SpawnObjects", timer);
+        isSpawning = true;
+     }
+    }
+
+    private void SpawnObjects()
+    {
+        Instantiate(obstaculoPrefab, spawnerObstaculos.transform.position, Quaternion.identity);
+        isSpawning = false;
     }
 }

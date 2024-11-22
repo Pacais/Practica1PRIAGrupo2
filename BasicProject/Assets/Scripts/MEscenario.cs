@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovimientoEscenario : MonoBehaviour
+public class MEscenario : MonoBehaviour
 {
     private float VMovimiento = 8f;
-    private Vector3 currentposition;
     
     void Start()
     {

@@ -17,13 +17,11 @@ public class Jugador : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        
+    {   
         if (estaEnElSuelo && Input.GetKeyDown(KeyCode.Space))
         {
-           
-            rigidbody2D.AddForce(new Vector2(0, fuerzaSalto));
-            estaEnElSuelo = false; 
+            rigidbody2D.AddForce(new Vector3(0, fuerzaSalto));
+            estaEnElSuelo = false;
         }
     }
 
@@ -37,4 +35,3 @@ public class Jugador : MonoBehaviour
         }
     }
 }
-
