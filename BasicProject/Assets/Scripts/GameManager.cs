@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scripts : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     private bool isSpawning;   
     private float minWait;
