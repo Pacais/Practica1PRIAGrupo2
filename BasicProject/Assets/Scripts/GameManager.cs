@@ -32,4 +32,9 @@ public class Scripts : MonoBehaviour
         Instantiate(obstaculoPrefab, spawnerObstaculos.transform.position, Quaternion.identity);
         isSpawning = false;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(collision.gameObject);
+    }
 }
