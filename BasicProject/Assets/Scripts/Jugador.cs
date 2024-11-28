@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class Jugador : MonoBehaviour
 {
-    public float fuerzaSalto;
-    private Rigidbody2D rd2D;
-    private bool estaEnElSuelo = true;
 
+    private float fuerzaSalto = 500f;
+    private Rigidbody2D rb2D;
+    private bool estaEnElSuelo = true;
     private GameManager gameManager;  
 
-    // Start is called before the first frame update
+
+    
     void Start()
     {
-        rd2D = GetComponent<Rigidbody2D>();
-
-        gameManager = FindObjectOfType<GameManager>();
+       rb2D = GetComponent<Rigidbody2D>();
+       gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
     {
         if (estaEnElSuelo && Input.GetKeyDown(KeyCode.Space))
         {
-            rd2D.AddForce(new Vector2(0, fuerzaSalto));
+            rb2D.AddForce(new Vector3(0, fuerzaSalto));
             estaEnElSuelo = false;
         }
     }
@@ -34,8 +34,7 @@ public class Jugador : MonoBehaviour
             estaEnElSuelo = true;
         }
         else if (col.gameObject.CompareTag("Obstaculo"))
-        {
-            
+        {            
             gameManager.ReducirVida();
         }
     }
