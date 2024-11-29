@@ -11,14 +11,16 @@ public class MObstaculos : MonoBehaviour
         
     }
 
-    
     void Update()
     {
         transform.Translate(Vector3.left * VMovimiento * Time.deltaTime);
+        Destroy();
     }
 
-    /*private void OnTriggerEnter2D(Collider2D collision)
+    private void Destroy()
     {
-        Destroy(gameObject);
-    }*/
+        if(transform.position.x <= -12f){
+            Destroy(gameObject);
+        }
+    }
 }
