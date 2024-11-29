@@ -1,23 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Jugador : MonoBehaviour
 {
-    private float fuerzaSalto = 500f;
 
+    private float fuerzaSalto = 500f;
     private Rigidbody2D rb2D;
-    private bool estaEnElSuelo = true; 
+    private bool estaEnElSuelo = true;
+    private GameManager gameManager;  
+
 
     
     void Start()
     {
-        rb2D = GetComponent<Rigidbody2D>();
+       rb2D = GetComponent<Rigidbody2D>();
+       gameManager = FindObjectOfType<GameManager>();
     }
 
-    
     void Update()
-    {   
+    {
         if (estaEnElSuelo && Input.GetKeyDown(KeyCode.Space))
         {
             rb2D.AddForce(new Vector3(0, fuerzaSalto));
@@ -25,13 +28,15 @@ public class Jugador : MonoBehaviour
         }
     }
 
-    
     private void OnCollisionEnter2D(Collision2D col)
     {
-       
         if (col.gameObject.CompareTag("Suelo"))
         {
-            estaEnElSuelo = true; 
+            estaEnElSuelo = true;
+        }
+        else if (col.gameObject.CompareTag("Obstaculo"))
+        {            
+            gameManager.ReducirVida();
         }
     }
 }

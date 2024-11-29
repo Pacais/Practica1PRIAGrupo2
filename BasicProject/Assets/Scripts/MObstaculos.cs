@@ -5,19 +5,22 @@ using UnityEngine;
 public class MObstaculos : MonoBehaviour
 {
     private float VMovimiento = 8f;
+    public GameObject spawnerObstaculos;
     void Start()
     {
-
+        
     }
-
 
     void Update()
     {
         transform.Translate(Vector3.left * VMovimiento * Time.deltaTime);
+        Destroy();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Destroy()
     {
-        Destroy(collision.gameObject);
+        if(transform.position.x <= -12f){
+            Destroy(gameObject);
+        }
     }
 }
