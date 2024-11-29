@@ -6,14 +6,15 @@ TagManager:
   tags:
   - Suelo
   - Obstaculo
+  - SpawnerObstaculos
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Obstaculo
   - Water
   - UI
-  - 
+  - Jugador
   - 
   - 
   - 

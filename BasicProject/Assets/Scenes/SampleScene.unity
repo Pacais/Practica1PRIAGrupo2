@@ -573,9 +573,9 @@ GameObject:
   m_Component:
   - component: {fileID: 401956914}
   - component: {fileID: 401956916}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SpawnerObstaculos
-  m_TagString: Untagged
+  m_TagString: SpawnerObstaculos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1212,7 +1212,7 @@ GameObject:
   - component: {fileID: 2129285955}
   - component: {fileID: 2129285959}
   - component: {fileID: 2129285958}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square
   m_TagString: Player
   m_Icon: {fileID: 0}
