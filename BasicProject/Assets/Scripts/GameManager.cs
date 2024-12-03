@@ -41,12 +41,6 @@ public class GameManager : MonoBehaviour
                 Invoke("SpawnObjects", timer);
                 isSpawning = true;
             }
-
-
-            if (Input.GetKeyDown(KeyCode.R) && vidaJugador <= 0)
-            {
-                ReiniciarJuego();
-            }
         }
     }
 
@@ -79,6 +73,11 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         gameOverPanel.SetActive(true);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ReiniciarJuego();
+        }
     }
 
     private void ReiniciarJuego()
@@ -90,6 +89,13 @@ public class GameManager : MonoBehaviour
 
         gameOverPanel.SetActive(false);
 
+
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(collision.gameObject);
+
     }
 }
