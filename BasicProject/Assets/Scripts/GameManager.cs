@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro; 
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,9 +11,9 @@ public class GameManager : MonoBehaviour
     public GameObject obstaculoPrefab;
     public GameObject spawnerObstaculos;
 
-    public int vidaJugador = 3;  
-    public TextMeshProUGUI vidaText;  
-    public GameObject gameOverPanel;  
+    public int vidaJugador = 3;
+    public TextMeshProUGUI vidaText;
+    public GameObject gameOverPanel;
 
 
     void Start()
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     {
         if (vidaJugador <= 0)
         {
-           
+
             GameOver();
         }
         else
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
                 isSpawning = true;
             }
 
-           
+
             if (Input.GetKeyDown(KeyCode.R) && vidaJugador <= 0)
             {
                 ReiniciarJuego();
@@ -58,43 +58,41 @@ public class GameManager : MonoBehaviour
 
     public void ReducirVida()
     {
-        vidaJugador--;  
+        vidaJugador--;
 
         if (vidaJugador <= 0)
         {
-            
+
             GameOver();
         }
 
-        ActualizarVidaUI();  
+        ActualizarVidaUI();
     }
 
     private void ActualizarVidaUI()
     {
-        
+
         vidaText.text = "Vida: " + vidaJugador.ToString();
     }
 
     private void GameOver()
     {
-        
-        Time.timeScale = 0f;  
-        gameOverPanel.SetActive(true);  
+        Time.timeScale = 0f;
+        gameOverPanel.SetActive(true);
     }
 
     private void ReiniciarJuego()
     {
+        Time.timeScale = 1f;
+        vidaJugador = 3;
+        ActualizarVidaUI();
 
-      
-        Time.timeScale = 1f; 
-        vidaJugador = 3;  
-        ActualizarVidaUI();  
 
-      
         gameOverPanel.SetActive(false);
 
-        
+
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
