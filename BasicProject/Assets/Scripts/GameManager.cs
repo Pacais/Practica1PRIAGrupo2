@@ -90,7 +90,6 @@ public class GameManager : MonoBehaviour
 
         gameOverPanel.SetActive(false);
 
-
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 }
