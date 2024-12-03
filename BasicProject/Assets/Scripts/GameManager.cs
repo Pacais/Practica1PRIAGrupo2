@@ -90,13 +90,6 @@ public class GameManager : MonoBehaviour
 
         gameOverPanel.SetActive(false);
 
-
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Destroy(collision.gameObject);
-
     }
 }
