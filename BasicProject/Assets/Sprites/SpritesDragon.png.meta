@@ -93,19 +93,6 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -113,7 +100,7 @@ TextureImporter:
       name: SpritesDragon_0
       rect:
         serializedVersion: 2
-        x: 21
+        x: 22
         y: 357
         width: 245
         height: 308
@@ -124,8 +111,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 283fe0ca0dcd8dc448f7c9c4508362c3
-      internalID: 1915781515
+      spriteID: 7ca5fa7c8a2ddd0448fa3ea0d7f5c7b9
+      internalID: 1312157834
       vertices: []
       indices: 
       edges: []
@@ -135,7 +122,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 294
-        y: 357
+        y: 358
         width: 245
         height: 308
       alignment: 0
@@ -145,8 +132,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92c29ea9641bb2f4db25c2ebbc9a6a74
-      internalID: -96805687
+      spriteID: f0d7a4a72ac5fcf4d8f65c31ef1d6881
+      internalID: -1929064930
       vertices: []
       indices: 
       edges: []
@@ -166,8 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc45981a84a5c0c4fb4c7a443e512973
-      internalID: -268202285
+      spriteID: a2a078ad3b527ce44ab3179da8a97879
+      internalID: -1972636113
       vertices: []
       indices: 
       edges: []
@@ -187,8 +174,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f785056ebf61e154cbdede78bc7e2dfa
-      internalID: -1463924721
+      spriteID: 18b9471308f7e1f4186bea1091b83463
+      internalID: 681335057
       vertices: []
       indices: 
       edges: []
@@ -197,7 +184,7 @@ TextureImporter:
       name: SpritesDragon_4
       rect:
         serializedVersion: 2
-        x: 21
+        x: 22
         y: 21
         width: 245
         height: 308
@@ -208,8 +195,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fdd88da1e7a3d294fae934fd6af406b4
-      internalID: 940693768
+      spriteID: 6d2e80fc32d702043954eabcf6190dad
+      internalID: -690189523
       vertices: []
       indices: 
       edges: []
@@ -225,14 +212,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      SpritesDragon_0: 1915781515
-      SpritesDragon_1: -96805687
-      SpritesDragon_2: -268202285
-      SpritesDragon_3: -1463924721
-      SpritesDragon_4: 940693768
-      SpritesDragon_5: -1465709270
-      SpritesDragon_6: -1829416510
-      SpritesDragon_7: -1613637153
+      SpritesDragon_0: 1312157834
+      SpritesDragon_1: -1929064930
+      SpritesDragon_2: -1972636113
+      SpritesDragon_3: 681335057
+      SpritesDragon_4: -690189523
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
