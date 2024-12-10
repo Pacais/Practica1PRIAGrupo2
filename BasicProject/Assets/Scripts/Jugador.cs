@@ -29,7 +29,7 @@ public class Jugador : MonoBehaviour
         if (estaEnElSuelo && Input.GetKeyDown(KeyCode.Space))
         {
             animator.SetBool("Jumping", true);
-            rb2D.AddForce(new Vector3(0, fuerzaSalto));
+            rb2D.AddForce(new Vector3(0, fuerzaSalto)); // rb2D.AddForce(Vector3.up * fuerzaSalto, ForceMode2D.Force); / startingJump(mario) / Invoke("EndStartingJump", nº max de salto)
             estaEnElSuelo = false;
         }
     }
