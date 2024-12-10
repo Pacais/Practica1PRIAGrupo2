@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Jugador : MonoBehaviour
 {
-    private float fuerzaSalto = 500f;
+    private float fuerzaSalto = 600f;
     private Rigidbody2D rb2D;
     private bool estaEnElSuelo = true;
     private GameManager gameManager;
