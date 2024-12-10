@@ -17,9 +17,9 @@ public class MEscenario : MonoBehaviour
         transform.Translate(Vector3.left * VMovimiento * Time.deltaTime);
 
         // Repeticion de suelo
-        if(transform.position.x <= -transform.localScale.x)
+        if(transform.position.x <= -28f)
         {
-            transform.Translate(Vector3.right * transform.localScale.x * 2f);
+            transform.Translate(Vector3.right * 28f * 2f);
         }
     }
 }
