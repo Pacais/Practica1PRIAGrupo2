@@ -5,15 +5,19 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] TMP_Text puntosTexto;
     private bool isSpawning;
     private float minWait;
     private float maxWait;
     public GameObject obstaculoPrefab;
     public GameObject spawnerObstaculos;
-
+    public GameObject gameOver;
+    private int puntos;
+    private float timer;
+    public int puntosSegundo = 10;
     public int vidaJugador = 3;
     public TextMeshProUGUI vidaText;
-    public GameObject gameOverPanel;
+    public GameObject[] vidas;
 
 
     void Start()
@@ -21,9 +25,7 @@ public class GameManager : MonoBehaviour
         isSpawning = false;
         minWait = 1f;
         maxWait = 2.5f;
-
-        gameOverPanel.SetActive(false);
-        ActualizarVidaUI();
+        puntos = 0;
     }
 
     void Update()
@@ -42,6 +44,7 @@ public class GameManager : MonoBehaviour
                 isSpawning = true;
             }
         }
+        PuntosTiempo();
     }
 
     private void SpawnObjects()
@@ -56,7 +59,6 @@ public class GameManager : MonoBehaviour
 
         if (vidaJugador <= 0)
         {
-
             GameOver();
         }
 
@@ -65,14 +67,13 @@ public class GameManager : MonoBehaviour
 
     private void ActualizarVidaUI()
     {
-
-        vidaText.text = "Vida: " + vidaJugador.ToString();
+        vidas[vidaJugador].SetActive(false);
     }
 
     private void GameOver()
     {
         Time.timeScale = 0f;
-        gameOverPanel.SetActive(true);
+        gameOver.SetActive(true);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -84,11 +85,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         vidaJugador = 3;
-        ActualizarVidaUI();
-
-
-        gameOverPanel.SetActive(false);
-
+        gameOver.SetActive(false);
 
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
@@ -96,6 +93,12 @@ public class GameManager : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Destroy(collision.gameObject);
+    }
 
+    private void PuntosTiempo(){
+        timer += Time.deltaTime;
+        puntos = (int)(timer * puntosSegundo);
+        Debug.Log(puntos);
+        puntosTexto.text = string.Format("{0:00000}", puntos);
     }
 }

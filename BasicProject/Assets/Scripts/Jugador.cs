@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class Jugador : MonoBehaviour
 {
-    private float fuerzaSalto = 500f;
+    private float fuerzaSalto = 600f;
     private Rigidbody2D rb2D;
     private bool estaEnElSuelo = true;
     private GameManager gameManager;
-
-    private bool esInvulnerable = false; // Indica si el jugador está en estado invulnerable
-    private float duracionInvulnerable = 1.0f; // Duración de la invulnerabilidad
+    private Animator animator;
+    private bool esInvulnerable = false; // Indica si el jugador esta en estado invulnerable
+    private float duracionInvulnerable = 1.0f; // Duracion de la invulnerabilidad
     private SpriteRenderer spriteRenderer; // Para manejar el parpadeo del sprite
     private Collider2D jugadorCollider; // Collider del jugador
 
@@ -21,13 +21,15 @@ public class Jugador : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>(); // Obtenemos el SpriteRenderer del jugador
         jugadorCollider = GetComponent<Collider2D>(); // Obtenemos el Collider2D del jugador
         gameManager = FindObjectOfType<GameManager>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
         if (estaEnElSuelo && Input.GetKeyDown(KeyCode.Space))
         {
-            rb2D.AddForce(new Vector3(0, fuerzaSalto));
+            animator.SetBool("Jumping", true);
+            rb2D.AddForce(new Vector3(0, fuerzaSalto)); // rb2D.AddForce(Vector3.up * fuerzaSalto, ForceMode2D.Force); / startingJump(mario) / Invoke("EndStartingJump", nÂº max de salto)
             estaEnElSuelo = false;
         }
     }
@@ -36,6 +38,7 @@ public class Jugador : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Suelo"))
         {
+            animator.SetBool("Jumping", false);
             estaEnElSuelo = true;
         }
         else if (col.gameObject.CompareTag("Obstaculo"))
@@ -44,7 +47,7 @@ public class Jugador : MonoBehaviour
             if (!esInvulnerable)
             {
                 gameManager.ReducirVida();
-                StartCoroutine(ActivarInvulnerabilidad()); // Activar invulnerabilidad e ignorar todas las colisiones con obstáculos
+                StartCoroutine(ActivarInvulnerabilidad()); // Activar invulnerabilidad e ignorar todas las colisiones con obstï¿½culos
             }
         }
     }
@@ -65,7 +68,7 @@ public class Jugador : MonoBehaviour
             yield return new WaitForSeconds(0.1f); // Esperar 0.1 segundos
         }
 
-        // Restaurar las colisiones con obstáculos después de la invulnerabilidad
+        // Restaurar las colisiones con obstï¿½culos despuï¿½s de la invulnerabilidad
         IgnorarColisionesConObstaculos(false);
 
         esInvulnerable = false; // Desactivar estado invulnerable
@@ -78,7 +81,7 @@ public class Jugador : MonoBehaviour
 
         foreach (var obstaculo in obstaculos)
         {
-            // Ignorar o restaurar la colisión entre el jugador y los obstáculos
+            // Ignorar o restaurar la colisiï¿½n entre el jugador y los obstï¿½culos
             if (obstaculo.TryGetComponent(out Collider2D colliderObstaculo))
             {
                 Physics2D.IgnoreCollision(colliderObstaculo, jugadorCollider, ignorar);
