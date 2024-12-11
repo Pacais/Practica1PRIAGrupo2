@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 999bb7b2f77414145b47dee16f427ff0
+guid: c22f2257ca9e51745b80cd4281297d89
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -108,7 +108,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: SpritesObstacles_0
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 21
+        width: 175
+        height: 406
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdc52e6756e072447bfb5a36ed134574
+      internalID: 2139573023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesObstacles_8
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 49
+        width: 189
+        height: 196
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8d8ffa3266568c47a02b882bb82496f
+      internalID: 790761206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesObstacles_3
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 294
+        width: 203
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f9a8801162fed443a80554c49feb50c
+      internalID: -765560253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpritesObstacles_2
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 294
+        width: 203
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 416a091ff08da8f4ea16da37e828cb4f
+      internalID: 1932763683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +203,16 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SpritesObstacles_0: 2139573023
+      SpritesObstacles_1: 1824028020
+      SpritesObstacles_2: 1932763683
+      SpritesObstacles_3: -765560253
+      SpritesObstacles_4: -804341087
+      SpritesObstacles_5: 1973145128
+      SpritesObstacles_6: 315324914
+      SpritesObstacles_7: 892923115
+      SpritesObstacles_8: 790761206
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

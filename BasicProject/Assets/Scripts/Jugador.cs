@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class Jugador : MonoBehaviour
 {
-    private float fuerzaSalto = 600f;
+    private float fuerzaSalto = 24f;
+    private float potenciaSalto = 0;
+    bool canJump = true;
     private Rigidbody2D rb2D;
     private bool estaEnElSuelo = true;
     private GameManager gameManager;
@@ -26,20 +28,27 @@ public class Jugador : MonoBehaviour
 
     void Update()
     {
-        if (estaEnElSuelo && Input.GetKeyDown(KeyCode.Space))
+        potenciaSalto = fuerzaSalto;
+        
+        if (estaEnElSuelo && Input.GetKey(KeyCode.Space) && canJump)
         {
             animator.SetBool("Jumping", true);
-            rb2D.AddForce(new Vector3(0, fuerzaSalto)); // rb2D.AddForce(Vector3.up * fuerzaSalto, ForceMode2D.Force); / startingJump(mario) / Invoke("EndStartingJump", nº max de salto)
-            estaEnElSuelo = false;
+            rb2D.AddForce(Vector3.up * potenciaSalto, ForceMode2D.Force); 
+            Invoke("StopJumping", 0.4f);
         }
     }
-
+    void StopJumping(){
+        canJump = false;
+        estaEnElSuelo = false;
+    }
+    
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Suelo"))
         {
             animator.SetBool("Jumping", false);
             estaEnElSuelo = true;
+            canJump = true;
         }
         else if (col.gameObject.CompareTag("Obstaculo"))
         {
