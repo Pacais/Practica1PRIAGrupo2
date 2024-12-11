@@ -29,19 +29,30 @@ public class Jugador : MonoBehaviour
     void Update()
     {
         potenciaSalto = fuerzaSalto;
-        
+        // Salto variable
         if (estaEnElSuelo && Input.GetKey(KeyCode.Space) && canJump)
         {
-            animator.SetBool("Jumping", true);
-            rb2D.AddForce(Vector3.up * potenciaSalto, ForceMode2D.Force); 
-            Invoke("StopJumping", 0.4f);
+            animator.SetBool("Jumping", true);  // Activamos la animación con el bool de unity
+            rb2D.AddForce(Vector3.up * potenciaSalto, ForceMode2D.Force);   // Indicamos la direción del salto y la potencia de este. Ponemos ForceMode2D.Force para que sea una cantidad fija.
+            Invoke("StopJumping", 0.4f);    //Llamamos a StopJumping para que el salto dure el tiempo determinado (0.4s) 
         }
+        // Agacharse
+        else if (Input.GetKeyDown(KeyCode.LeftShift))    // Activamos la animación mientras esté pulsada la tecla
+        {
+            animator.SetBool("Crouching", true);
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))    // Cuando sueltas la tecla (Input.GetKeyUp) se desactiva la animacion
+        {
+            animator.SetBool("Crouching", false);
+        }
+
     }
-    void StopJumping(){
+    void StopJumping()
+    {
         canJump = false;
         estaEnElSuelo = false;
     }
-    
+
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Suelo"))
