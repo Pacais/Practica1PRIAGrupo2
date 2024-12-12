@@ -131,6 +131,7 @@ public class Jugador : MonoBehaviour
             // Ignorar o restaurar la colision entre el jugador y los obstaculos
             if (obstaculo.TryGetComponent(out Collider2D colliderObstaculo))
             {
+                Physics2D.IgnoreCollision(colliderObstaculo, crouchCollider, ignorar);
                 Physics2D.IgnoreCollision(colliderObstaculo, jugadorCollider, ignorar);
             }
         }
