@@ -5,12 +5,18 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] TMP_Text puntosTexto;
-    private bool isSpawning;
-    private float minWait;
-    private float maxWait;
+    [SerializeField]
+    TMP_Text puntosTexto;
+    private bool isSpawningObstaculos;
+    private bool isSpawningEnemigos;
+    private float minWaitObstaculos;
+    private float maxWaitObstaculos;
+    private float minWaitEnemigos;
+    private float maxWaitEnemigos;
     public GameObject obstaculoPrefab;
+    public GameObject enemigoPrefab;
     public GameObject spawnerObstaculos;
+    public GameObject spawnerEnemigos;
     public GameObject gameOver;
     private int puntos;
     private float timer;
@@ -18,13 +24,17 @@ public class GameManager : MonoBehaviour
     public int vidaJugador = 3;
     public TextMeshProUGUI vidaText;
     public GameObject[] vidas;
-
+    public int puntosParaVidaExtra = 1000; 
+    private int puntosSiguienteVida;
 
     void Start()
     {
-        isSpawning = false;
-        minWait = 1f;
-        maxWait = 2.5f;
+        isSpawningObstaculos = false;
+        isSpawningEnemigos = false;
+        minWaitObstaculos = 1f;
+        maxWaitObstaculos = 2.5f;
+        minWaitEnemigos = 2f;
+        maxWaitEnemigos = 4f;
         puntos = 0;
     }
 
@@ -37,11 +47,18 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            if (!isSpawning)
+            if (!isSpawningObstaculos)
             {
-                float timer = Random.Range(minWait, maxWait);
+                float timer = Random.Range(minWaitObstaculos, maxWaitObstaculos);
                 Invoke("SpawnObjects", timer);
-                isSpawning = true;
+                isSpawningObstaculos = true;
+            }
+
+            if (!isSpawningEnemigos)
+            {
+                float timer = Random.Range(minWaitEnemigos, maxWaitEnemigos);
+                Invoke("SpawnEnemigos", timer);
+                isSpawningEnemigos = true;
             }
         }
         PuntosTiempo();
@@ -50,7 +67,13 @@ public class GameManager : MonoBehaviour
     private void SpawnObjects()
     {
         Instantiate(obstaculoPrefab, spawnerObstaculos.transform.position, Quaternion.identity);
-        isSpawning = false;
+        isSpawningObstaculos = false;
+    }
+
+    private void SpawnEnemigos()
+    {
+        Instantiate(enemigoPrefab, spawnerEnemigos.transform.position, Quaternion.identity);
+        isSpawningEnemigos = false;
     }
 
     public void ReducirVida()
@@ -62,10 +85,15 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
 
-        ActualizarVidaUI();
+        RestarVidaUI();
     }
 
-    private void ActualizarVidaUI()
+    /*private void ActualizarVidaUI()
+    {
+        vidas[vidaJugador].SetActive(false);
+    }*/
+
+    private void RestarVidaUI()
     {
         vidas[vidaJugador].SetActive(false);
     }
@@ -95,10 +123,29 @@ public class GameManager : MonoBehaviour
         Destroy(collision.gameObject);
     }
 
-    private void PuntosTiempo(){
+    private void PuntosTiempo()
+    {
         timer += Time.deltaTime;
         puntos = (int)(timer * puntosSegundo);
+       
+
+        if (puntos >= puntosSiguienteVida)
+        {
+            AumentarVida(); 
+            puntosSiguienteVida += puntosParaVidaExtra;
+        }
         Debug.Log(puntos);
         puntosTexto.text = string.Format("{0:00000}", puntos);
     }
+
+    public void AumentarVida()
+    {
+        if (vidaJugador < 3)
+        {
+            vidas[vidaJugador].SetActive(true);
+            vidaJugador++;
+            Debug.Log(vidaJugador);
+        }
+    }
 }
+
