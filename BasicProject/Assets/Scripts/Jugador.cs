@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Jugador : MonoBehaviour
 {
-    private float fuerzaSalto = 24f;
+    private float fuerzaSalto = 95f;
     private float potenciaSalto = 0;
     bool canJump = true;
     private Rigidbody2D rb2D;
@@ -18,6 +18,11 @@ public class Jugador : MonoBehaviour
     private SpriteRenderer spriteRenderer; // Para manejar el parpadeo del sprite
     public BoxCollider2D jugadorCollider; // Collider del jugador
     public BoxCollider2D crouchCollider; // Collider del jugador agachado
+
+    void Awake(){
+        QualitySettings.vSyncCount = 1;
+        Application.targetFrameRate = 60;
+    }
 
     void Start()
     {
@@ -58,7 +63,6 @@ public class Jugador : MonoBehaviour
             //jugadorCollider.size = new Vector2(1.8f, 2.8f);   // Volvemos al tamaño normal el collider
             isCrouching = false;    // Ponemos que está agachado a false, para que al soltar la tecla pueda volver a agacharse o saltar
         }
-
     }
     void StopJumping()
     {
