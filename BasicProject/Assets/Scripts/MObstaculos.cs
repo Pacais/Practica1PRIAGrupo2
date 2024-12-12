@@ -19,7 +19,7 @@ public class MObstaculos : MonoBehaviour
 
     private void Destroy()
     {
-        if(transform.position.x <= -12f){
+        if(transform.position.x <= -15f){
             Destroy(gameObject);
         }
     }
