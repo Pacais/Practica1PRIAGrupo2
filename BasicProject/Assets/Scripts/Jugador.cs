@@ -83,6 +83,16 @@ public class Jugador : MonoBehaviour
                 StartCoroutine(ActivarInvulnerabilidad()); // Activar invulnerabilidad e ignorar todas las colisiones con obstaculos
             }
         }
+
+        else if (col.gameObject.CompareTag("Enemigo"))
+        {
+            // Solo reducir vida si no es invulnerable
+            if (!esInvulnerable)
+            {
+                gameManager.ReducirVida();
+                StartCoroutine(ActivarInvulnerabilidad()); // Activar invulnerabilidad e ignorar todas las colisiones con obst�culos
+            }
+        }
     }
 
     private IEnumerator ActivarInvulnerabilidad()

@@ -923,6 +923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puntosTexto: {fileID: 1265563479}
   obstaculoPrefab: {fileID: 8522623898816255271, guid: 0510d3d42b97ce744845f4b08c3cc39c, type: 3}
+  enemigoPrefab: {fileID: 5874428873403405369, guid: 8c5217825b3771c47876a1ad01492700, type: 3}
   spawnerObstaculos: {fileID: 401956913}
   gameOver: {fileID: 1491111397}
   puntosSegundo: 10
@@ -932,6 +933,7 @@ MonoBehaviour:
   - {fileID: 381341979}
   - {fileID: 855984164}
   - {fileID: 529340167}
+  puntosParaVidaExtra: 1000
 --- !u!4 &551138212
 Transform:
   m_ObjectHideFlags: 0
@@ -2134,16 +2136,61 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1818060480}
-  - component: {fileID: 1818060481}
-  m_Layer: 0
-  m_Name: SpritesObstacles 1_8
-  m_TagString: Untagged
+  - component: {fileID: 1800354754}
+  - component: {fileID: 1800354753}
+  m_Layer: 7
+  m_Name: 'SpawnerEnemigos '
+  m_TagString: SpawnerEnemigos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1818060480
+--- !u!61 &1800354753
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800354752}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -22, y: 2}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 4}
+  m_EdgeRadius: 0
+--- !u!4 &1800354754
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2732,6 +2779,7 @@ SceneRoots:
   - {fileID: 368145527}
   - {fileID: 2091878947}
   - {fileID: 401956914}
+  - {fileID: 1800354754}
   - {fileID: 2129285957}
   - {fileID: 1132106660}
   - {fileID: 91670134}
