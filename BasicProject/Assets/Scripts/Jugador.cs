@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Jugador : MonoBehaviour
 {
-    private float fuerzaSalto = 23f;
+    private float fuerzaSalto = 26f;
     private float potenciaSalto = 0;
     bool canJump = true;
     private Rigidbody2D rb2D;
