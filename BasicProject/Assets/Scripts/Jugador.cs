@@ -17,7 +17,7 @@ public class Jugador : MonoBehaviour
     private float duracionInvulnerable = 1.0f; // Duracion de la invulnerabilidad
     private SpriteRenderer spriteRenderer; // Para manejar el parpadeo del sprite
     public BoxCollider2D jugadorCollider; // Collider del jugador
-    public BoxCollider2D croucghCollider; // Collider del jugador agachado
+    public BoxCollider2D crouchCollider; // Collider del jugador agachado
 
     void Start()
     {
@@ -43,7 +43,7 @@ public class Jugador : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.LeftShift) && !isCrouching)    // Activamos la animación mientras esté pulsada la tecla y no esté agachado
         {
             // Activamos el collider agachado y desactivamos el normal
-            croucghCollider.enabled = true;
+            crouchCollider.enabled = true;
             jugadorCollider.enabled = false;
             //jugadorCollider.size = new Vector2(3f, 1.5f); // Cambiamos el tamaño del collider al agacharse
             animator.SetBool("Crouching", true);
@@ -53,7 +53,7 @@ public class Jugador : MonoBehaviour
         {
             animator.SetBool("Crouching", false);
             // Dejamos el collider agachado desactivado y activamos el normal
-            croucghCollider.enabled = false;
+            crouchCollider.enabled = false;
             jugadorCollider.enabled = true;
             //jugadorCollider.size = new Vector2(1.8f, 2.8f);   // Volvemos al tamaño normal el collider
             isCrouching = false;    // Ponemos que está agachado a false, para que al soltar la tecla pueda volver a agacharse o saltar
