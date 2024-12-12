@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class Jugador : MonoBehaviour
 {
-    private float fuerzaSalto = 24f;
+    private float fuerzaSalto = 23f;
     private float potenciaSalto = 0;
     bool canJump = true;
     private Rigidbody2D rb2D;
     private bool estaEnElSuelo = true;
+    private bool isCrouching = false;
     private GameManager gameManager;
     private Animator animator;
     private bool esInvulnerable = false; // Indica si el jugador esta en estado invulnerable
@@ -29,21 +30,24 @@ public class Jugador : MonoBehaviour
     void Update()
     {
         potenciaSalto = fuerzaSalto;
-        // Salto variable
-        if (estaEnElSuelo && Input.GetKey(KeyCode.Space) && canJump)
+        //------------------------------------- Salto variable ---------------------------------------------------
+        if (estaEnElSuelo && Input.GetKey(KeyCode.Space) && canJump && !isCrouching)
         {
             animator.SetBool("Jumping", true);  // Activamos la animación con el bool de unity
             rb2D.AddForce(Vector3.up * potenciaSalto, ForceMode2D.Force);   // Indicamos la direción del salto y la potencia de este. Ponemos ForceMode2D.Force para que sea una cantidad fija.
-            Invoke("StopJumping", 0.4f);    //Llamamos a StopJumping para que el salto dure el tiempo determinado (0.4s) 
+            Invoke("StopJumping", 0.4f);    //Llamamos a StopJumping para que el salto dure el tiempo determinado (0.4s)
         }
-        // Agacharse
-        else if (Input.GetKeyDown(KeyCode.LeftShift))    // Activamos la animación mientras esté pulsada la tecla
+
+        //--------------------------------------- Agacharse ------------------------------------------------------
+        else if (Input.GetKeyDown(KeyCode.LeftShift) && !isCrouching)    // Activamos la animación mientras esté pulsada la tecla y no esté agachado
         {
             animator.SetBool("Crouching", true);
+            isCrouching = true; // Ponemos que está agachado a true
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))    // Cuando sueltas la tecla (Input.GetKeyUp) se desactiva la animacion
         {
             animator.SetBool("Crouching", false);
+            isCrouching = false;    // Ponemos que está agachado a false, para que al soltar la tecla pueda volver a agacharse o saltar
         }
 
     }
@@ -67,7 +71,7 @@ public class Jugador : MonoBehaviour
             if (!esInvulnerable)
             {
                 gameManager.ReducirVida();
-                StartCoroutine(ActivarInvulnerabilidad()); // Activar invulnerabilidad e ignorar todas las colisiones con obst�culos
+                StartCoroutine(ActivarInvulnerabilidad()); // Activar invulnerabilidad e ignorar todas las colisiones con obstaculos
             }
         }
     }
@@ -88,7 +92,7 @@ public class Jugador : MonoBehaviour
             yield return new WaitForSeconds(0.1f); // Esperar 0.1 segundos
         }
 
-        // Restaurar las colisiones con obst�culos despu�s de la invulnerabilidad
+        // Restaurar las colisiones con obstaculos despues de la invulnerabilidad
         IgnorarColisionesConObstaculos(false);
 
         esInvulnerable = false; // Desactivar estado invulnerable
@@ -101,7 +105,7 @@ public class Jugador : MonoBehaviour
 
         foreach (var obstaculo in obstaculos)
         {
-            // Ignorar o restaurar la colisi�n entre el jugador y los obst�culos
+            // Ignorar o restaurar la colision entre el jugador y los obstaculos
             if (obstaculo.TryGetComponent(out Collider2D colliderObstaculo))
             {
                 Physics2D.IgnoreCollision(colliderObstaculo, jugadorCollider, ignorar);
