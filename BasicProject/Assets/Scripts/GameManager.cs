@@ -29,11 +29,6 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI vidaText;
     public GameObject[] vidas;
 
-
-    public int puntosParaVidaExtra = 1000;
-    private int puntosSiguienteVida;
-
-
     void Awake(){
         if(gameManager != null && gameManager !=this){
             Destroy(gameObject);
