@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField]
     TMP_Text puntosTexto;
+    public static GameManager gameManager;
     private int puntosSiguienteVida;
     private int puntos;
     public int puntosSegundo = 10;
@@ -28,6 +29,14 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI vidaText;
     public GameObject[] vidas;
 
+    void Awake(){
+        if(gameManager != null && gameManager !=this){
+            Destroy(gameObject);
+            return;
+        }
+        gameManager=this;
+
+    }
     void Start()
     {
         isSpawningObstaculos = false;
@@ -63,6 +72,7 @@ public class GameManager : MonoBehaviour
             }
         }
         PuntosTiempo();
+        CambioVelocidad();
     }
 
     private void SpawnObjects()
@@ -150,8 +160,9 @@ public class GameManager : MonoBehaviour
     }
     private void CambioVelocidad()
     {
-        if (puntos % 100 == 0){
-            VMovimiento *= 1.20f;
+        if (puntos % 100 == 0 && puntos > 0){
+            VMovimiento *= 1.03f;
+            Debug.Log(VMovimiento);
         }
     }
 }

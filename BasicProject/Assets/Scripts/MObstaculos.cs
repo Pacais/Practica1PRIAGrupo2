@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class MObstaculos : MonoBehaviour
 {
-    public GameManager gameManager;
-    private float VMovimiento = 8f;
-    void Start()
-    {
-        
-    }
+    private float speed;
 
     void Update()
     {
-        transform.Translate(Vector3.left * gameManager.VMovimiento * Time.deltaTime);
+        speed = GameManager.gameManager.VMovimiento; 
+        transform.Translate(Vector3.left * speed * Time.deltaTime);
         Destroy();
     }
 

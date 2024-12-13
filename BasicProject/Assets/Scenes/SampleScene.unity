@@ -694,7 +694,7 @@ MonoBehaviour:
   VMovimiento: 8
   obstaculoPrefab: {fileID: 8522623898816255271, guid: 0510d3d42b97ce744845f4b08c3cc39c, type: 3}
   enemigoPrefab: {fileID: 5874428873403405369, guid: 8c5217825b3771c47876a1ad01492700, type: 3}
-  spawnerObstaculos: {fileID: 0}
+  spawnerObstaculos: {fileID: 1688257984}
   spawnerEnemigos: {fileID: 0}
   gameOver: {fileID: 1491111397}
   vidaText: {fileID: 0}
@@ -1943,6 +1943,37 @@ Transform:
   - {fileID: 343090838}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1688257984
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1688257985}
+  m_Layer: 0
+  m_Name: spawnerObstaculos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1688257985
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688257984}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.98, y: 1.62, z: -0.019080378}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2129285954
 GameObject:
   m_ObjectHideFlags: 0
@@ -2244,13 +2275,14 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 551138212}
   - {fileID: 674844783}
+  - {fileID: 1515048213}
+  - {fileID: 91670134}
   - {fileID: 1163911252}
   - {fileID: 2141187204}
   - {fileID: 1494717109}
   - {fileID: 1179008538}
   - {fileID: 712136549}
   - {fileID: 368145527}
+  - {fileID: 1688257985}
   - {fileID: 2129285957}
   - {fileID: 1132106660}
-  - {fileID: 91670134}
-  - {fileID: 1515048213}
