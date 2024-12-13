@@ -109,10 +109,7 @@ public class GameManager : MonoBehaviour
         RestarVidaUI();
     }
 
-    /*private void ActualizarVidaUI()
-    {
-        vidas[vidaJugador].SetActive(false);
-    }*/
+
 
     private void RestarVidaUI()
     {
@@ -176,4 +173,3 @@ public class GameManager : MonoBehaviour
         }
     }
 }
-
