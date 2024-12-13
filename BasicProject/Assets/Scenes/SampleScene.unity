@@ -733,9 +733,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puntosTexto: {fileID: 1265563479}
   obstaculoPrefab: {fileID: 8522623898816255271, guid: 0510d3d42b97ce744845f4b08c3cc39c, type: 3}
-  enemigoPrefab: {fileID: 5874428873403405369, guid: 8c5217825b3771c47876a1ad01492700, type: 3}
+  enemigoPrefab: {fileID: 4480179449280651267, guid: 7f3d8fa899ab62a4ab1b6460f0843cb3, type: 3}
   spawnerObstaculos: {fileID: 401956913}
-  spawnerEnemigos: {fileID: 0}
+  spawnerEnemigos: {fileID: 401956913}
   gameOver: {fileID: 1491111397}
   puntosSegundo: 10
   vidaJugador: 3
@@ -2331,7 +2331,7 @@ SceneRoots:
   - {fileID: 401956914}
   - {fileID: 2129285957}
   - {fileID: 1132106660}
-  - {fileID: 91670134}
   - {fileID: 1515048213}
+  - {fileID: 91670134}
   - {fileID: 1494717109}
   - {fileID: 1179008538}
