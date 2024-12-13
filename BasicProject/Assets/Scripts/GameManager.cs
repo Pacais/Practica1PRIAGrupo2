@@ -7,26 +7,41 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField]
     TMP_Text puntosTexto;
-    private bool isSpawningObstaculos;
-    private bool isSpawningEnemigos;
+    public static GameManager gameManager;
+    private int puntosSiguienteVida;
+    private int puntos;
+    public int puntosSegundo = 10;
+    public int vidaJugador = 3;
+    public int puntosParaVidaExtra = 1000;
+    public float VMovimiento = 8f;
     private float minWaitObstaculos;
     private float maxWaitObstaculos;
     private float minWaitEnemigos;
     private float maxWaitEnemigos;
+    private float timer;
+    private bool isSpawningObstaculos;
+    private bool isSpawningEnemigos;
     public GameObject obstaculoPrefab;
     public GameObject enemigoPrefab;
     public GameObject spawnerObstaculos;
     public GameObject spawnerEnemigos;
     public GameObject gameOver;
-    private int puntos;
-    private float timer;
-    public int puntosSegundo = 10;
-    public int vidaJugador = 3;
     public TextMeshProUGUI vidaText;
     public GameObject[] vidas;
+
+
     public int puntosParaVidaExtra = 1000;
     private int puntosSiguienteVida;
 
+
+    void Awake(){
+        if(gameManager != null && gameManager !=this){
+            Destroy(gameObject);
+            return;
+        }
+        gameManager=this;
+
+    }
     void Start()
     {
         isSpawningObstaculos = false;
@@ -62,6 +77,7 @@ public class GameManager : MonoBehaviour
             }
         }
         PuntosTiempo();
+        CambioVelocidad();
     }
 
     private void SpawnObjects()
@@ -155,6 +171,13 @@ public class GameManager : MonoBehaviour
             vidas[vidaJugador].SetActive(true);
             vidaJugador++;
             Debug.Log(vidaJugador);
+        }
+    }
+    private void CambioVelocidad()
+    {
+        if (puntos % 100 == 0 && puntos > 0){
+            VMovimiento *= 1.03f;
+            Debug.Log(VMovimiento);
         }
     }
 }

@@ -6,10 +6,6 @@ public class MEnemigos : MonoBehaviour
 {
     private float VMovimiento = 12f;
     public GameObject spawnerEnemigos;
-    void Start()
-    {
-
-    }
 
     void Update()
     {
