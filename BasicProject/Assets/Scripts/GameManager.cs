@@ -29,6 +29,11 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI vidaText;
     public GameObject[] vidas;
 
+
+    public int puntosParaVidaExtra = 1000;
+    private int puntosSiguienteVida;
+
+
     void Awake(){
         if(gameManager != null && gameManager !=this){
             Destroy(gameObject);
@@ -83,8 +88,18 @@ public class GameManager : MonoBehaviour
 
     private void SpawnEnemigos()
     {
-        Instantiate(enemigoPrefab, spawnerEnemigos.transform.position, Quaternion.identity);
-        isSpawningEnemigos = false;
+
+    float alturaDeseada = 5f; 
+    Vector3 nuevaPosicion = new Vector3(
+        spawnerObstaculos.transform.position.x,
+        alturaDeseada,
+        spawnerObstaculos.transform.position.z   
+    );
+
+        
+    Instantiate(enemigoPrefab, nuevaPosicion, Quaternion.identity);
+
+    isSpawningEnemigos = false;
     }
 
     public void ReducirVida()
@@ -138,11 +153,11 @@ public class GameManager : MonoBehaviour
     {
         timer += Time.deltaTime;
         puntos = (int)(timer * puntosSegundo);
-       
+
 
         if (puntos >= puntosSiguienteVida)
         {
-            AumentarVida(); 
+            AumentarVida();
             puntosSiguienteVida += puntosParaVidaExtra;
         }
         Debug.Log(puntos);

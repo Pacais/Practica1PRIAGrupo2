@@ -696,6 +696,7 @@ MonoBehaviour:
   enemigoPrefab: {fileID: 5874428873403405369, guid: 8c5217825b3771c47876a1ad01492700, type: 3}
   spawnerObstaculos: {fileID: 1688257984}
   spawnerEnemigos: {fileID: 0}
+
   gameOver: {fileID: 1491111397}
   vidaText: {fileID: 0}
   vidas:
@@ -2286,3 +2287,9 @@ SceneRoots:
   - {fileID: 1688257985}
   - {fileID: 2129285957}
   - {fileID: 1132106660}
+
+  - {fileID: 1515048213}
+  - {fileID: 91670134}
+  - {fileID: 1494717109}
+  - {fileID: 1179008538}
+
