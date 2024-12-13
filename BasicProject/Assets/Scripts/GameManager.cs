@@ -19,10 +19,12 @@ public class GameManager : MonoBehaviour
     private float minWaitEnemigos;
     private float maxWaitEnemigos;
     private float timer;
-    private bool isSpawningObstaculos;
-    private bool isSpawningEnemigos;
-    public GameObject obstaculoPrefab;
-    public GameObject enemigoPrefab;
+    private bool isSpawningCrystals;
+    private bool isSpawningBats;
+    private bool isSpawningSpiders;
+    public GameObject crystalPrefab;
+    public GameObject batPrefab;
+    public GameObject spiderPrefab;
     public GameObject spawnerObstaculos;
     public GameObject spawnerEnemigos;
     public GameObject gameOver;
@@ -39,8 +41,8 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        isSpawningObstaculos = false;
-        isSpawningEnemigos = false;
+        isSpawningCrystals = false;
+        isSpawningBats = false;
         minWaitObstaculos = 1f;
         maxWaitObstaculos = 2.5f;
         minWaitEnemigos = 2f;
@@ -57,44 +59,58 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            if (!isSpawningObstaculos)
+            if (!isSpawningCrystals)
             {
                 float timer = Random.Range(minWaitObstaculos, maxWaitObstaculos);
-                Invoke("SpawnObjects", timer);
-                isSpawningObstaculos = true;
+                Invoke("SpawnCrystals", timer);
+                isSpawningCrystals = true;
             }
 
-            if (!isSpawningEnemigos)
+            if (!isSpawningBats)
             {
                 float timer = Random.Range(minWaitEnemigos, maxWaitEnemigos);
-                Invoke("SpawnEnemigos", timer);
-                isSpawningEnemigos = true;
+                Invoke("SpawnBats", timer);
+                isSpawningBats = true;
+            }
+
+            if (!isSpawningSpiders)
+            {
+                float timer = Random.Range(minWaitEnemigos, maxWaitEnemigos);
+                Invoke("SpawnSpiders", timer);
+                isSpawningCrystals = true;
             }
         }
         PuntosTiempo();
         CambioVelocidad();
     }
 
-    private void SpawnObjects()
+//------------------------------------- Spawner Crystals ------------------------------------------------
+    private void SpawnCrystals()
     {
-        Instantiate(obstaculoPrefab, spawnerObstaculos.transform.position, Quaternion.identity);
-        isSpawningObstaculos = false;
+        Instantiate(crystalPrefab, spawnerObstaculos.transform.position, Quaternion.identity);
+        isSpawningCrystals = false;
     }
 
-    private void SpawnEnemigos()
+//------------------------------------- Spawner Bats ------------------------------------------------
+    private void SpawnBats()
     {
-
     float alturaDeseada = 5f; 
-    Vector3 nuevaPosicion = new Vector3(
-        spawnerObstaculos.transform.position.x,
-        alturaDeseada,
-        spawnerObstaculos.transform.position.z   
-    );
+    Vector3 nuevaPosicion = new Vector3(spawnerObstaculos.transform.position.x, alturaDeseada, spawnerObstaculos.transform.position.z);
 
-        
-    Instantiate(enemigoPrefab, nuevaPosicion, Quaternion.identity);
+    Instantiate(batPrefab, nuevaPosicion, Quaternion.identity);
 
-    isSpawningEnemigos = false;
+    isSpawningBats = false;
+    }
+
+//------------------------------------- Spawner Spiders ------------------------------------------------
+    private void SpawnSpiders()
+    {
+    float alturaDeseada = 8f; 
+    Vector3 nuevaPosicion = new Vector3(spawnerObstaculos.transform.position.x, alturaDeseada, spawnerObstaculos.transform.position.z);
+
+    Instantiate(spiderPrefab, nuevaPosicion, Quaternion.identity);
+
+    isSpawningCrystals = false;
     }
 
     public void ReducirVida()
