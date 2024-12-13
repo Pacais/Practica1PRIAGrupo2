@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class Jugador : MonoBehaviour
 {
-    private float fuerzaSalto = 95f;
-    private float potenciaSalto = 0;
-    bool canJump = true;
+    private float fuerzaSalto = 25f;
+    private int saltosDisponibles = 2;
     private Rigidbody2D rb2D;
     private bool estaEnElSuelo = true;
     private bool isCrouching = false;
@@ -35,13 +34,13 @@ public class Jugador : MonoBehaviour
 
     void Update()
     {
-        potenciaSalto = fuerzaSalto;
-        //------------------------------------- Salto variable ---------------------------------------------------
-        if (estaEnElSuelo && Input.GetKey(KeyCode.Space) && canJump && !isCrouching)
+        //--------------------------------------- Salto --------------------------------------------------------
+        if (/*estaEnElSuelo*/ Input.GetKeyDown(KeyCode.Space) && !isCrouching && saltosDisponibles > 0)
         {
             animator.SetBool("Jumping", true);  // Activamos la animación con el bool de unity
-            rb2D.AddForce(Vector3.up * potenciaSalto, ForceMode2D.Force);   // Indicamos la direción del salto y la potencia de este. Ponemos ForceMode2D.Force para que sea una cantidad fija.
-            Invoke("StopJumping", 0.4f);    //Llamamos a StopJumping para que el salto dure el tiempo determinado (0.4s)
+            rb2D.AddForce(Vector3.up * fuerzaSalto, ForceMode2D.Impulse);   // Indicamos la direción del salto y la potencia de este. Ponemos ForceMode2D.Force para que sea una cantidad fija.
+            //estaEnElSuelo = false;
+            saltosDisponibles--;
         }
 
         //--------------------------------------- Agacharse ------------------------------------------------------
@@ -64,11 +63,6 @@ public class Jugador : MonoBehaviour
             isCrouching = false;    // Ponemos que está agachado a false, para que al soltar la tecla pueda volver a agacharse o saltar
         }
     }
-    void StopJumping()
-    {
-        canJump = false;
-        estaEnElSuelo = false;
-    }
 
     private void OnCollisionEnter2D(Collision2D col)
     {
@@ -76,7 +70,7 @@ public class Jugador : MonoBehaviour
         {
             animator.SetBool("Jumping", false);
             estaEnElSuelo = true;
-            canJump = true;
+            saltosDisponibles = 2;
         }
         else if (col.gameObject.CompareTag("Obstaculo"))
         {

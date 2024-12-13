@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MObstaculos : MonoBehaviour
 {
+    public GameManager gameManager;
     private float VMovimiento = 8f;
-    public GameObject spawnerObstaculos;
     void Start()
     {
         
@@ -13,7 +13,7 @@ public class MObstaculos : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector3.left * VMovimiento * Time.deltaTime);
+        transform.Translate(Vector3.left * gameManager.VMovimiento * Time.deltaTime);
         Destroy();
     }
 
