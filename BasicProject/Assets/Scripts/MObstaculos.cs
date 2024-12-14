@@ -5,6 +5,7 @@ using UnityEngine;
 public class MObstaculos : MonoBehaviour
 {
     private float speed;
+    public GameObject spawnerEnemigos;
 
     void Update()
     {

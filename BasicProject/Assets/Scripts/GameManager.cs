@@ -13,12 +13,14 @@ public class GameManager : MonoBehaviour
     public int puntosSegundo = 10;
     public int vidaJugador = 3;
     public int puntosParaVidaExtra = 1000;
-    public float VMovimiento = 8f;
-    private float minWaitObstaculos;
-    private float maxWaitObstaculos;
-    private float minWaitEnemigos;
-    private float maxWaitEnemigos;
+    private float minWaitCrystals = 4f;
+    private float maxWaitCrystals = 8f;
+    private float minWaitBats = 2f;
+    private float maxWaitBats = 4f;
+    private float minWaitSpiders = 2f;
+    private float maxWaitSpiders = 4f;
     private float timer;
+    public float VMovimiento = 8f;
     private bool isSpawningCrystals;
     private bool isSpawningBats;
     private bool isSpawningSpiders;
@@ -26,7 +28,6 @@ public class GameManager : MonoBehaviour
     public GameObject batPrefab;
     public GameObject spiderPrefab;
     public GameObject spawnerObstaculos;
-    public GameObject spawnerEnemigos;
     public GameObject gameOver;
     public TextMeshProUGUI vidaText;
     public GameObject[] vidas;
@@ -43,10 +44,7 @@ public class GameManager : MonoBehaviour
     {
         isSpawningCrystals = false;
         isSpawningBats = false;
-        minWaitObstaculos = 1f;
-        maxWaitObstaculos = 2.5f;
-        minWaitEnemigos = 2f;
-        maxWaitEnemigos = 4f;
+        isSpawningSpiders = false;
         puntos = 0;
     }
 
@@ -54,30 +52,29 @@ public class GameManager : MonoBehaviour
     {
         if (vidaJugador <= 0)
         {
-
             GameOver();
         }
         else
         {
             if (!isSpawningCrystals)
             {
-                float timer = Random.Range(minWaitObstaculos, maxWaitObstaculos);
+                float timer = Random.Range(minWaitCrystals, maxWaitCrystals);
                 Invoke("SpawnCrystals", timer);
                 isSpawningCrystals = true;
             }
 
             if (!isSpawningBats)
             {
-                float timer = Random.Range(minWaitEnemigos, maxWaitEnemigos);
+                float timer = Random.Range(minWaitBats, maxWaitBats);
                 Invoke("SpawnBats", timer);
                 isSpawningBats = true;
             }
 
             if (!isSpawningSpiders)
             {
-                float timer = Random.Range(minWaitEnemigos, maxWaitEnemigos);
+                float timer = Random.Range(minWaitSpiders, maxWaitSpiders);
                 Invoke("SpawnSpiders", timer);
-                isSpawningCrystals = true;
+                isSpawningSpiders = true;
             }
         }
         PuntosTiempo();
@@ -91,7 +88,7 @@ public class GameManager : MonoBehaviour
         isSpawningCrystals = false;
     }
 
-//------------------------------------- Spawner Bats ------------------------------------------------
+//------------------------------------- Spawner Bats --------------------------------------------------
     private void SpawnBats()
     {
     float alturaDeseada = 5f; 
@@ -105,7 +102,7 @@ public class GameManager : MonoBehaviour
 //------------------------------------- Spawner Spiders ------------------------------------------------
     private void SpawnSpiders()
     {
-    float alturaDeseada = 8f; 
+    float alturaDeseada = 9.5f; 
     Vector3 nuevaPosicion = new Vector3(spawnerObstaculos.transform.position.x, alturaDeseada, spawnerObstaculos.transform.position.z);
 
     Instantiate(spiderPrefab, nuevaPosicion, Quaternion.identity);
@@ -113,6 +110,7 @@ public class GameManager : MonoBehaviour
     isSpawningCrystals = false;
     }
 
+//------------------------------------- Perder Vidas ------------------------------------------------
     public void ReducirVida()
     {
         vidaJugador--;
@@ -132,6 +130,7 @@ public class GameManager : MonoBehaviour
         vidas[vidaJugador].SetActive(false);
     }
 
+//------------------------------------- Game Over ------------------------------------------------
     private void GameOver()
     {
         Time.timeScale = 0f;

@@ -5,18 +5,18 @@ using UnityEngine;
 
 public class Jugador : MonoBehaviour
 {
-    private float fuerzaSalto = 25f;
-    private int saltosDisponibles = 2;
-    private Rigidbody2D rb2D;
-    private bool estaEnElSuelo = true;
-    private bool isCrouching = false;
     private GameManager gameManager;
-    private Animator animator;
-    private bool esInvulnerable = false; // Indica si el jugador esta en estado invulnerable
-    private float duracionInvulnerable = 1.0f; // Duracion de la invulnerabilidad
+    private Rigidbody2D rb2D;
     private SpriteRenderer spriteRenderer; // Para manejar el parpadeo del sprite
+    private Animator animator;
     public BoxCollider2D jugadorCollider; // Collider del jugador
     public BoxCollider2D crouchCollider; // Collider del jugador agachado
+    private int saltosDisponibles = 2;
+    private float fuerzaSalto = 25f;
+    private float duracionInvulnerable = 1.0f; // Duracion de la invulnerabilidad
+    private bool estaEnElSuelo = true;
+    private bool isCrouching = false;
+    private bool esInvulnerable = false; // Indica si el jugador esta en estado invulnerable
 
     void Awake(){
         QualitySettings.vSyncCount = 1;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class MEnemigos : MonoBehaviour
 {
     private float VMovimiento = 12f;
-    public GameObject spawnerEnemigos;
+    public GameObject spawnerObstaculos;
 
     void Update()
     {
