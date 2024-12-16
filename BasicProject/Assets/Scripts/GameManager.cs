@@ -93,21 +93,14 @@ public class GameManager : MonoBehaviour
     //------------------------------------- Spawner Bats --------------------------------------------------
     private void SpawnBats()
     {
-        float alturaDeseada = 4f;
-        Vector3 nuevaPosicion = new Vector3(spawnerObstaculos.transform.position.x, alturaDeseada, spawnerObstaculos.transform.position.z);
-
-        Instantiate(batPrefab, nuevaPosicion, Quaternion.identity);
-
+        Instantiate(batPrefab, batPrefab.transform.position, Quaternion.identity);
         isSpawningBats = false;
     }
 
     //------------------------------------- Spawner Spiders ------------------------------------------------
     private void SpawnSpiders()
     {
-        float alturaDeseada = 9.5f;
-        Vector3 nuevaPosicion = new Vector3(spawnerObstaculos.transform.position.x, alturaDeseada, spawnerObstaculos.transform.position.z);
-
-        Instantiate(spiderPrefab, nuevaPosicion, Quaternion.identity);
+        Instantiate(spiderPrefab, spiderPrefab.transform.position, Quaternion.identity);
 
         isSpawningCrystals = false;
     }
@@ -124,8 +117,6 @@ public class GameManager : MonoBehaviour
 
         RestarVidaUI();
     }
-
-
 
     private void RestarVidaUI()
     {
