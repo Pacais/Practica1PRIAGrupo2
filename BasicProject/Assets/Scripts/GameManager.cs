@@ -15,17 +15,21 @@ public class GameManager : MonoBehaviour
     public int puntosParaVidaExtra = 1000;
     private float minWaitCrystals = 2f;
     private float maxWaitCrystals = 4f;
+    private float minWaitCyB = 2f;
+    private float maxWaitCyB = 4f;
     private float minWaitBats = 2f;
     private float maxWaitBats = 4f;
     private float minWaitSpiders = 2f;
     private float maxWaitSpiders = 4f;
     private float timer;
     public float VMovimiento = 8f;
-    private bool isSpawningCrystals;
-    private bool isSpawningBats;
-    private bool isSpawningSpiders;
+    private bool isSpawningCrystals = false;
+    private bool isSpawningCyB = false;
+    private bool isSpawningBats = false;
+    private bool isSpawningSpiders = false;
     public GameObject crystalPrefab;
     public GameObject batPrefab;
+    public GameObject CBPrefab;
     public GameObject spiderPrefab;
     public GameObject spawnerObstaculos;
     public GameObject gameOver;
@@ -44,9 +48,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        isSpawningCrystals = false;
-        isSpawningBats = false;
-        isSpawningSpiders = false;
         puntos = 0;
     }
 
@@ -58,21 +59,29 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            /*
             if (!isSpawningCrystals)
             {
                 float timer = Random.Range(minWaitCrystals, maxWaitCrystals);
                 Invoke("SpawnCrystals", timer);
                 isSpawningCrystals = true;
+            }*/
+ //----------------------------------------------
+            if (!isSpawningCyB)
+            {
+                float timer = Random.Range(minWaitCyB, maxWaitCyB);
+                Invoke("SpawnCyB", timer);
+                isSpawningCyB = true;
             }
-
-            if (!isSpawningBats)
+//------------------------------------------------
+            if (!isSpawningBats && puntos >= 100)
             {
                 float timer = Random.Range(minWaitBats, maxWaitBats);
                 Invoke("SpawnBats", timer);
                 isSpawningBats = true;
             }
 
-            if (!isSpawningSpiders)
+            if (!isSpawningSpiders && puntos > 200)
             {
                 float timer = Random.Range(minWaitSpiders, maxWaitSpiders);
                 Invoke("SpawnSpiders", timer);
@@ -88,6 +97,12 @@ public class GameManager : MonoBehaviour
     {
         Instantiate(crystalPrefab, spawnerObstaculos.transform.position, Quaternion.identity);
         isSpawningCrystals = false;
+    }
+    //------------------------------------- Crystals & Bats ------------------------------------------------
+    private void SpawnCyB()
+    {
+        Instantiate(CBPrefab, spawnerObstaculos.transform.position, Quaternion.identity);
+        isSpawningCyB = false;
     }
 
     //------------------------------------- Spawner Bats --------------------------------------------------
