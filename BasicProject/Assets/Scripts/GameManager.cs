@@ -13,8 +13,8 @@ public class GameManager : MonoBehaviour
     public int puntosSegundo = 10;
     public int vidaJugador = 3;
     public int puntosParaVidaExtra = 1000;
-    private float minWaitCrystals = 4f;
-    private float maxWaitCrystals = 8f;
+    private float minWaitCrystals = 2f;
+    private float maxWaitCrystals = 4f;
     private float minWaitBats = 2f;
     private float maxWaitBats = 4f;
     private float minWaitSpiders = 2f;
@@ -32,14 +32,16 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI vidaText;
     public GameObject[] vidas;
 
-    void Awake(){
-        if(gameManager != null && gameManager !=this){
+    void Awake()
+    {
+        if (gameManager != null && gameManager != this)
+        {
             Destroy(gameObject);
             return;
         }
-        gameManager=this;
-
+        gameManager = this;
     }
+
     void Start()
     {
         isSpawningCrystals = false;
@@ -81,36 +83,36 @@ public class GameManager : MonoBehaviour
         CambioVelocidad();
     }
 
-//------------------------------------- Spawner Crystals ------------------------------------------------
+    //------------------------------------- Spawner Crystals ------------------------------------------------
     private void SpawnCrystals()
     {
         Instantiate(crystalPrefab, spawnerObstaculos.transform.position, Quaternion.identity);
         isSpawningCrystals = false;
     }
 
-//------------------------------------- Spawner Bats --------------------------------------------------
+    //------------------------------------- Spawner Bats --------------------------------------------------
     private void SpawnBats()
     {
-    float alturaDeseada = 5f; 
-    Vector3 nuevaPosicion = new Vector3(spawnerObstaculos.transform.position.x, alturaDeseada, spawnerObstaculos.transform.position.z);
+        float alturaDeseada = 4f;
+        Vector3 nuevaPosicion = new Vector3(spawnerObstaculos.transform.position.x, alturaDeseada, spawnerObstaculos.transform.position.z);
 
-    Instantiate(batPrefab, nuevaPosicion, Quaternion.identity);
+        Instantiate(batPrefab, nuevaPosicion, Quaternion.identity);
 
-    isSpawningBats = false;
+        isSpawningBats = false;
     }
 
-//------------------------------------- Spawner Spiders ------------------------------------------------
+    //------------------------------------- Spawner Spiders ------------------------------------------------
     private void SpawnSpiders()
     {
-    float alturaDeseada = 9.5f; 
-    Vector3 nuevaPosicion = new Vector3(spawnerObstaculos.transform.position.x, alturaDeseada, spawnerObstaculos.transform.position.z);
+        float alturaDeseada = 9.5f;
+        Vector3 nuevaPosicion = new Vector3(spawnerObstaculos.transform.position.x, alturaDeseada, spawnerObstaculos.transform.position.z);
 
-    Instantiate(spiderPrefab, nuevaPosicion, Quaternion.identity);
+        Instantiate(spiderPrefab, nuevaPosicion, Quaternion.identity);
 
-    isSpawningCrystals = false;
+        isSpawningCrystals = false;
     }
 
-//------------------------------------- Perder Vidas ------------------------------------------------
+    //------------------------------------- Perder Vidas ------------------------------------------------
     public void ReducirVida()
     {
         vidaJugador--;
@@ -130,7 +132,7 @@ public class GameManager : MonoBehaviour
         vidas[vidaJugador].SetActive(false);
     }
 
-//------------------------------------- Game Over ------------------------------------------------
+    //------------------------------------- Game Over ------------------------------------------------
     private void GameOver()
     {
         Time.timeScale = 0f;
@@ -182,7 +184,8 @@ public class GameManager : MonoBehaviour
     }
     private void CambioVelocidad()
     {
-        if (puntos % 100 == 0 && puntos > 0){
+        if (puntos % 100 == 0 && puntos > 0)
+        {
             VMovimiento *= 1.03f;
             Debug.Log(VMovimiento);
         }
