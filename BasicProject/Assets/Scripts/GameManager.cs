@@ -86,7 +86,6 @@ public class GameManager : MonoBehaviour
     //------------------------------------- Spawner Crystals ------------------------------------------------
     private void SpawnCrystals()
     {
-        Debug.Log("spawn");
         Instantiate(crystalPrefab, spawnerObstaculos.transform.position, Quaternion.identity);
         isSpawningCrystals = false;
     }
@@ -173,7 +172,7 @@ public class GameManager : MonoBehaviour
     }
     private void CambioVelocidad()
     {
-        if (puntos % 100 == 0 && puntos > 0)
+        if (puntos % 200 == 0 && puntos > 0)
         {
             VMovimiento *= 1.03f;
         }
