@@ -86,6 +86,7 @@ public class GameManager : MonoBehaviour
     //------------------------------------- Spawner Crystals ------------------------------------------------
     private void SpawnCrystals()
     {
+        Debug.Log("spawn");
         Instantiate(crystalPrefab, spawnerObstaculos.transform.position, Quaternion.identity);
         isSpawningCrystals = false;
     }
@@ -101,8 +102,7 @@ public class GameManager : MonoBehaviour
     private void SpawnSpiders()
     {
         Instantiate(spiderPrefab, spiderPrefab.transform.position, Quaternion.identity);
-
-        isSpawningCrystals = false;
+        isSpawningSpiders = false;
     }
 
     //------------------------------------- Perder Vidas ------------------------------------------------
@@ -160,7 +160,6 @@ public class GameManager : MonoBehaviour
             AumentarVida();
             puntosSiguienteVida += puntosParaVidaExtra;
         }
-        Debug.Log(puntos);
         puntosTexto.text = string.Format("{0:00000}", puntos);
     }
 
@@ -170,7 +169,6 @@ public class GameManager : MonoBehaviour
         {
             vidas[vidaJugador].SetActive(true);
             vidaJugador++;
-            Debug.Log(vidaJugador);
         }
     }
     private void CambioVelocidad()
@@ -178,7 +176,6 @@ public class GameManager : MonoBehaviour
         if (puntos % 100 == 0 && puntos > 0)
         {
             VMovimiento *= 1.03f;
-            Debug.Log(VMovimiento);
         }
     }
 }
