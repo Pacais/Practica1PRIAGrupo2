@@ -59,22 +59,21 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            /*
             if (!isSpawningCrystals)
             {
                 float timer = Random.Range(minWaitCrystals, maxWaitCrystals);
                 Invoke("SpawnCrystals", timer);
                 isSpawningCrystals = true;
-            }*/
- //----------------------------------------------
+            }
+            //----------------------------------------------
             if (!isSpawningCyB)
             {
                 float timer = Random.Range(minWaitCyB, maxWaitCyB);
                 Invoke("SpawnCyB", timer);
                 isSpawningCyB = true;
             }
-//------------------------------------------------
-            if (!isSpawningBats && puntos > 200)
+            //------------------------------------------------
+            if (!isSpawningBats && puntos > 100)
             {
                 float timer = Random.Range(minWaitBats, maxWaitBats);
                 Invoke("SpawnBats", timer);

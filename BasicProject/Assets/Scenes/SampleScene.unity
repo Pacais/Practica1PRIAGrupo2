@@ -854,7 +854,7 @@ MonoBehaviour:
   VMovimiento: 8
   crystalPrefab: {fileID: 8522623898816255271, guid: 0510d3d42b97ce744845f4b08c3cc39c, type: 3}
   batPrefab: {fileID: 4480179449280651267, guid: 7f3d8fa899ab62a4ab1b6460f0843cb3, type: 3}
-  CBPrefab: {fileID: 8522623898816255271, guid: bfba8b6da3563df48b38336eba3c285f, type: 3}
+  CBPrefab: {fileID: 985228796672100443, guid: bfba8b6da3563df48b38336eba3c285f, type: 3}
   spiderPrefab: {fileID: 5253777957210476693, guid: cd597b72a6b46164291f77f062fcdc33, type: 3}
   spawnerObstaculos: {fileID: 401956913}
   gameOver: {fileID: 1491111397}
