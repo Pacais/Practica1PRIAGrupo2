@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
                 isSpawningCyB = true;
             }
 //------------------------------------------------
-            if (!isSpawningBats && puntos >= 100)
+            if (!isSpawningBats && puntos > 200)
             {
                 float timer = Random.Range(minWaitBats, maxWaitBats);
                 Invoke("SpawnBats", timer);

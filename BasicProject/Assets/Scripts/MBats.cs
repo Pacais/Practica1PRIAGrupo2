@@ -10,7 +10,7 @@ public class MEnemigos : MonoBehaviour
 
     void Update()
     {
-        speed = 1.5f * (GameManager.gameManager.VMovimiento);
+        speed = 4f + (GameManager.gameManager.VMovimiento);
         transform.Translate(Vector3.left * speed * Time.deltaTime);
         Destroy();
     }
