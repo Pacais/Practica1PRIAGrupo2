@@ -179,6 +179,8 @@ public class GameManager : MonoBehaviour
         if (puntos % 200 == 0 && puntos > 0)
         {
             VMovimiento *= 1.03f;
+            minWait *= 0.97f;
+            maxWait *= 0.97f;
         }
     }
 }
