@@ -13,16 +13,11 @@ public class GameManager : MonoBehaviour
     public int puntosSegundo = 10;
     public int vidaJugador = 3;
     public int puntosParaVidaExtra = 1000;
-    private float minWait = 1.5f;
-    private float maxWait = 4f;
+    private float minWait = 1f;
+    private float maxWait = 3f;
     private float timer;
     public float VMovimiento = 8f;
-    private bool isSpawningCrystals = false;
-    private bool isSpawningCrystalBat = false;
-    private bool isSpawningBats = false;
-    private bool isSpawningSpiders = false;
-    private bool isSpawningBatSpider = false;
-    private bool isSpawningCrystalSpider = false;
+    private bool isSpawning = false;
     public GameObject crystalPrefab;
     public GameObject batPrefab;
     public GameObject CrystalBatPrefab;
@@ -31,6 +26,7 @@ public class GameManager : MonoBehaviour
     public GameObject CrystalSpiderPrefab;
     public GameObject spawnerObstaculos;
     public GameObject gameOver;
+    public GameObject[] obstaculos;
     public TextMeshProUGUI vidaText;
     public GameObject[] vidas;
 
@@ -57,94 +53,61 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            if (!isSpawningCrystals)
-            {
+             if (!isSpawning){
                 float timer = Random.Range(minWait, maxWait);
-                Invoke("SpawnCrystals", timer);
-                isSpawningCrystals = true;
-            }
-
-            if (!isSpawningBats && puntos > 100)
-            {
-                float timer = Random.Range(minWait, maxWait);
-                Invoke("SpawnBats", timer);
-                isSpawningBats = true;
-            }
-
-            if (!isSpawningCrystalBat && puntos > 200)
-            {
-                float timer = Random.Range(minWait, maxWait);
-                Invoke("SpawnCrystalBat", timer);
-                isSpawningCrystalBat = true;
-            }
-
-            if (!isSpawningSpiders && puntos > 300)
-            {
-                float timer = Random.Range(minWait, maxWait);
-                Invoke("SpawnSpiders", timer);
-                isSpawningSpiders = true;
-            }
-
-            if (!isSpawningBatSpider && puntos > 400)
-            {
-                float timer = Random.Range(minWait, maxWait);
-                Invoke("SpawnBatSpider", timer);
-                isSpawningBatSpider = true;
-            }
-
-            if (!isSpawningCrystalSpider && puntos > 500)
-            {
-                float timer = Random.Range(minWait, maxWait);
-                Invoke("SpawnCrystalSpider", timer);
-                isSpawningCrystalSpider = true;
+                Invoke("Spawn", timer);
+                isSpawning = true;
             }
         }
         PuntosTiempo();
         CambioVelocidad();
     }
+//----------------------------------------- SPAWN OBSTACULOS -------------------------------------------------------
+    private void Spawn()
+    {
+        
+        int probabilidad = Random.Range(1,100);
+        int indice = Probabilidades(probabilidad);
+        indice = SpawnPuntos(indice);
+        Instantiate(obstaculos[indice], obstaculos[indice].transform.position, Quaternion.identity);
+        isSpawning = false;
 
-    //------------------------------------- Spawner Crystals ------------------------------------------------
-    private void SpawnCrystals()
-    {
-        Instantiate(crystalPrefab, crystalPrefab.transform.position, Quaternion.identity);
-        isSpawningCrystals = false;
     }
-    //------------------------------------- Crystals & Bats ------------------------------------------------
-    private void SpawnCrystalBat()
+    private int Probabilidades(int probabilidad)
     {
-        Instantiate(CrystalBatPrefab, CrystalBatPrefab.transform.position, Quaternion.identity);
-        isSpawningCrystalBat = false;
-    }
-
-    //------------------------------------- Spawner Bats --------------------------------------------------
-    private void SpawnBats()
-    {
-        Instantiate(batPrefab, batPrefab.transform.position, Quaternion.identity);
-        isSpawningBats = false;
-    }
-
-    //------------------------------------- Spawner Spiders ------------------------------------------------
-    private void SpawnSpiders()
-    {
-        Instantiate(spiderPrefab, spiderPrefab.transform.position, Quaternion.identity);
-        isSpawningSpiders = false;
-    }
-
-    //------------------------------------- Bat & Spider ------------------------------------------------
-    private void SpawnBatSpider()
-    {
-        Instantiate(BatSpiderPrefab, BatSpiderPrefab.transform.position, Quaternion.identity);
-        isSpawningBatSpider = false;
+        switch(probabilidad)    // Probabilidad de que aparezcan cada uno de los prefabs del array (obstaculos)
+        {
+            case <= 10: //10%
+                return 5; 
+            case <= 40: //30%
+                return 0;
+            case <= 60: //20%
+                return 1;
+            case <= 70: // 10%
+                return 2;
+            case <= 80: // 10%
+                return 4;
+            case <= 100: // 20%
+                return 3;
+            default:
+                return 0;               
+        }
     }
 
-    //------------------------------------- Bat & Spider ------------------------------------------------
-    private void SpawnCrystalSpider()
-    {
-        Instantiate(CrystalSpiderPrefab, CrystalSpiderPrefab.transform.position, Quaternion.identity);
-        isSpawningCrystalSpider = false;
+    private int SpawnPuntos(int indice){    // Limitar el spawn de obstaculos por puntos
+        if(puntos < 100){
+            indice = 0;
+        }
+        else if(puntos < 200){
+            indice = Random.Range(0, 1);
+        }
+        else if(puntos < 300){
+            indice = Random.Range(0, 3);
+        }
+        return indice;
     }
 
-    //------------------------------------- Perder Vidas ------------------------------------------------
+//----------------------------------------- PERDER VIDAS -------------------------------------------------------
     public void ReducirVida()
     {
         vidaJugador--;
@@ -162,7 +125,7 @@ public class GameManager : MonoBehaviour
         vidas[vidaJugador].SetActive(false);
     }
 
-    //------------------------------------- Game Over ------------------------------------------------
+//----------------------------------------- GAME OVER -------------------------------------------------------
     private void GameOver()
     {
         Time.timeScale = 0f;
@@ -202,6 +165,7 @@ public class GameManager : MonoBehaviour
         puntosTexto.text = string.Format("{0:00000}", puntos);
     }
 
+//----------------------------------------- VIDAS EXTRA -------------------------------------------------------
     public void AumentarVida()
     {
         if (vidaJugador < 3)
