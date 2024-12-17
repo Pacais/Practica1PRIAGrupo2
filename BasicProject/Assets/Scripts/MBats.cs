@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class MEnemigos : MonoBehaviour
 {
-
     private float speed;
-    public GameObject spawnerEnemigos;
 
     void Update()
     {

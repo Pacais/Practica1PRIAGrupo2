@@ -9,7 +9,7 @@ public class Jugador : MonoBehaviour
     private Rigidbody2D rb2D;
     private SpriteRenderer spriteRenderer; // Para manejar el parpadeo del sprite
     private Animator animator;
-    public BoxCollider2D jugadorCollider; // Collider del jugador
+    public PolygonCollider2D jugadorCollider; // Collider del jugador
     public BoxCollider2D crouchCollider; // Collider del jugador agachado
     private int saltosDisponibles = 2;
     private float fuerzaSalto = 25f;
@@ -17,7 +17,8 @@ public class Jugador : MonoBehaviour
     private bool isCrouching = false;
     private bool esInvulnerable = false; // Indica si el jugador esta en estado invulnerable
 
-    void Awake(){
+    void Awake()
+    {
         QualitySettings.vSyncCount = 1;
         Application.targetFrameRate = 60;
     }
@@ -26,7 +27,7 @@ public class Jugador : MonoBehaviour
     {
         rb2D = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>(); // Obtenemos el SpriteRenderer del jugador
-        jugadorCollider = GetComponent<BoxCollider2D>(); // Obtenemos el Collider2D del jugador
+        jugadorCollider = GetComponent<PolygonCollider2D>(); // Obtenemos el Collider2D del jugador
         gameManager = FindObjectOfType<GameManager>();
         animator = GetComponent<Animator>();
     }
