@@ -10,20 +10,14 @@ public class GameManager : MonoBehaviour
     public static GameManager gameManager;
     private int puntosSiguienteVida;
     private int puntos;
-    public int puntosSegundo = 10;
-    public int vidaJugador = 3;
-    public int puntosParaVidaExtra = 1000;
+    private int puntosSegundo = 10;
+    private int vidaJugador = 3;
+    private int puntosParaVidaExtra = 1000;
     private float minWait = 1f;
     private float maxWait = 3f;
     private float timer;
     public float VMovimiento = 8f;
     private bool isSpawning = false;
-    public GameObject crystalPrefab;
-    public GameObject batPrefab;
-    public GameObject CrystalBatPrefab;
-    public GameObject spiderPrefab;
-    public GameObject BatSpiderPrefab;
-    public GameObject CrystalSpiderPrefab;
     public GameObject spawnerObstaculos;
     public GameObject gameOver;
     public GameObject[] obstaculos;
@@ -77,18 +71,24 @@ public class GameManager : MonoBehaviour
     {
         switch(probabilidad)    // Probabilidad de que aparezcan cada uno de los prefabs del array (obstaculos)
         {
-            case <= 10: //10%
+            case <= 5: //5%
                 return 5; 
-            case <= 40: //30%
-                return 0;
-            case <= 60: //20%
-                return 1;
-            case <= 70: // 10%
-                return 2;
-            case <= 80: // 10%
+
+            case <= 10: //5%
                 return 4;
-            case <= 100: // 20%
+            
+            case <= 15: //5%
                 return 3;
+
+            case <= 40: //25%
+                return 2;
+
+            case <= 70: //30%
+                return 1;
+            
+            case <= 100: //30%
+                return 0;
+            
             default:
                 return 0;               
         }
@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
             indice = 0;
         }
         else if(puntos < 200){
-            indice = Random.Range(0, 1);
+            indice = Random.Range(0, 2);
         }
         else if(puntos < 300){
             indice = Random.Range(0, 3);

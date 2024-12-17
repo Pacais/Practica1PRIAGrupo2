@@ -861,23 +861,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puntosTexto: {fileID: 1265563479}
-  puntosSegundo: 10
-  vidaJugador: 3
-  puntosParaVidaExtra: 1000
   VMovimiento: 8
-  crystalPrefab: {fileID: 8522623898816255271, guid: 0510d3d42b97ce744845f4b08c3cc39c, type: 3}
-  batPrefab: {fileID: 4480179449280651267, guid: 7f3d8fa899ab62a4ab1b6460f0843cb3, type: 3}
-  CrystalBatPrefab: {fileID: 0}
-  spiderPrefab: {fileID: 5253777957210476693, guid: cd597b72a6b46164291f77f062fcdc33, type: 3}
-  BatSpiderPrefab: {fileID: 0}
-  CrystalSpiderPrefab: {fileID: 0}
   spawnerObstaculos: {fileID: 401956913}
   gameOver: {fileID: 1491111397}
   obstaculos:
   - {fileID: 8522623898816255271, guid: 0510d3d42b97ce744845f4b08c3cc39c, type: 3}
   - {fileID: 4480179449280651267, guid: 7f3d8fa899ab62a4ab1b6460f0843cb3, type: 3}
-  - {fileID: 985228796672100443, guid: bfba8b6da3563df48b38336eba3c285f, type: 3}
   - {fileID: 5253777957210476693, guid: cd597b72a6b46164291f77f062fcdc33, type: 3}
+  - {fileID: 985228796672100443, guid: bfba8b6da3563df48b38336eba3c285f, type: 3}
   - {fileID: 1326315507645272355, guid: 4a4e38d66e5742341a89ff1ee968bcb1, type: 3}
   - {fileID: 8596884342413192766, guid: 87200cf369473fb4582f60db944675e5, type: 3}
   vidaText: {fileID: 0}
