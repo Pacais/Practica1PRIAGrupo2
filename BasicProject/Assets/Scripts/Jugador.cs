@@ -30,7 +30,6 @@ public class Jugador : MonoBehaviour
         jugadorCollider = GetComponent<PolygonCollider2D>(); // Obtenemos el Collider2D del jugador
         gameManager = FindObjectOfType<GameManager>();
         animator = GetComponent<Animator>();
- 
     }
 
     void Update()
@@ -74,11 +73,9 @@ public class Jugador : MonoBehaviour
             // Solo reducir vida si no es invulnerable
             if (!esInvulnerable)
             {
-                
                 gameManager.ReducirVida();
                 StartCoroutine(ActivarInvulnerabilidad()); // Activar invulnerabilidad e ignorar todas las colisiones con obstaculos
             }
-            
         }
 
         else if (col.gameObject.CompareTag("Enemigo"))
@@ -86,11 +83,10 @@ public class Jugador : MonoBehaviour
             // Solo reducir vida si no es invulnerable
             if (!esInvulnerable)
             {
-                
                 gameManager.ReducirVida();
                 StartCoroutine(ActivarInvulnerabilidad()); // Activar invulnerabilidad e ignorar todas las colisiones con obst�culos
             }
-          
+
         }
     }
 
@@ -145,7 +141,6 @@ public class Jugador : MonoBehaviour
         esInvulnerable = false; // Desactivar estado invulnerable
         Debug.Log("Invulnerabilidad terminada");
     }
-
 
 
 
