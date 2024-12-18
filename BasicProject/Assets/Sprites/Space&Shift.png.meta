@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c53288a7bf6036847b02cc3078bbc9c5
+guid: da490e16d3d38564999b8385cc1966df
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SpritesObstacles 1_0
+      name: Space&Shift_0
       rect:
         serializedVersion: 2
-        x: 63
-        y: 119
-        width: 7
-        height: 301
+        x: 119
+        y: 126
+        width: 105
+        height: 91
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f178dc613134ce4d8d92cf9a3afa52d
-      internalID: 922215554
+      spriteID: 91d4b93d19d076d4f914ae27c18d6c8c
+      internalID: 790385795
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpritesObstacles 1_1
+      name: Space&Shift_1
       rect:
         serializedVersion: 2
-        x: 168
-        y: 238
-        width: 175
-        height: 203
+        x: 301
+        y: 126
+        width: 301
+        height: 91
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8c0baecd95086f43ba85ec326d86295
-      internalID: -1517290044
+      spriteID: b5260538f1863144d85173bdabdb3256
+      internalID: -880106221
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpritesObstacles 1_2
+      name: Space&Shift_2
       rect:
         serializedVersion: 2
-        x: 399
-        y: 294
-        width: 196
-        height: 112
+        x: 686
+        y: 126
+        width: 301
+        height: 91
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,71 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09db4f49972ccee469ecbd2d3cafa96f
-      internalID: -189690524
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpritesObstacles 1_8
-      rect:
-        serializedVersion: 2
-        x: 168
-        y: 14
-        width: 175
-        height: 203
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4f02b5306759a6540965a5f37a4ca2c0
-      internalID: -1369677419
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpritesObstacles 1_9
-      rect:
-        serializedVersion: 2
-        x: 546
-        y: 49
-        width: 189
-        height: 196
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 26d78e2060c96e94b9ee63feb0c02b05
-      internalID: 1607667424
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpritesObstacles 1_3
-      rect:
-        serializedVersion: 2
-        x: 658
-        y: 294
-        width: 196
-        height: 112
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 47abc0d7112bca14786950d19e38b800
-      internalID: 473933079
+      spriteID: 259d84028dd72344d8e7c4f0b4910069
+      internalID: 1280915408
       vertices: []
       indices: 
       edges: []
@@ -233,16 +170,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      SpritesObstacles 1_0: 922215554
-      SpritesObstacles 1_1: -1517290044
-      SpritesObstacles 1_2: -189690524
-      SpritesObstacles 1_3: 473933079
-      SpritesObstacles 1_4: 1232188171
-      SpritesObstacles 1_5: -713985426
-      SpritesObstacles 1_6: 1937338760
-      SpritesObstacles 1_7: 1139615705
-      SpritesObstacles 1_8: -1369677419
-      SpritesObstacles 1_9: 1607667424
+      Space&Shift_0: 790385795
+      Space&Shift_1: -880106221
+      Space&Shift_2: 1280915408
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
