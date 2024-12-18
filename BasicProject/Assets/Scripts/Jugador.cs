@@ -10,7 +10,7 @@ public class Jugador : MonoBehaviour
     private SpriteRenderer spriteRenderer; // Para manejar el parpadeo del sprite
     private Animator animator;
     public PolygonCollider2D jugadorCollider; // Collider del jugador
-    public BoxCollider2D crouchCollider; // Collider del jugador agachado
+    public PolygonCollider2D crouchCollider; // Collider del jugador agachado
     private int saltosDisponibles = 2;
     private float fuerzaSalto = 25f;
     private float duracionInvulnerable = 1.0f; // Duracion de la invulnerabilidad
