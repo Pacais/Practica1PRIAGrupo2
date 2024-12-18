@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     private int puntosSegundo = 10;
     private int vidaJugador = 3;
     private int puntosParaVidaExtra = 1000;
-    private float minWait = 1f;
+    private float minWait = 2f;
     private float maxWait = 3f;
     private float timer;
     public float VMovimiento = 8f;
@@ -72,16 +72,16 @@ public class GameManager : MonoBehaviour
     {
         switch (probabilidad)    // Probabilidad de que aparezcan cada uno de los prefabs del array (obstaculos)
         {
-            case <= 5: //5%
+            case <= 10: //10%
                 return 5;
 
-            case <= 15: //10%
+            case <= 20: //10%
                 return 4;
 
-            case <= 25: //10%
+            case <= 30: //10%
                 return 3;
 
-            case <= 40: //15%
+            case <= 40: //10%
                 return 2;
 
             case <= 70: //30%
@@ -108,6 +108,10 @@ public class GameManager : MonoBehaviour
         else if (puntos < 300)
         {
             indice = Random.Range(0, 3);
+        }
+        else if(puntos > 600 && indice == 2)
+        {
+            indice = Random.Range(3,6);
         }
         return indice;
     }
@@ -184,7 +188,7 @@ public class GameManager : MonoBehaviour
     {
         if (puntos % 200 == 0 && puntos > 0)
         {
-            VMovimiento *= 1.03f;
+            VMovimiento *= 1.02f;
             minWait *= 0.97f;
             maxWait *= 0.97f;
         }
