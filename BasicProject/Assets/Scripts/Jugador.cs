@@ -10,7 +10,7 @@ public class Jugador : MonoBehaviour
     private SpriteRenderer spriteRenderer; // Para manejar el parpadeo del sprite
     private Animator animator;
     public PolygonCollider2D jugadorCollider; // Collider del jugador
-    public PolygonCollider2D crouchCollider; // Collider del jugador agachado
+    public BoxCollider2D crouchCollider; // Collider del jugador agachado
     private int saltosDisponibles = 2;
     private float fuerzaSalto = 25f;
     private float duracionInvulnerable = 1.0f; // Duracion de la invulnerabilidad
@@ -86,6 +86,7 @@ public class Jugador : MonoBehaviour
                 gameManager.ReducirVida();
                 StartCoroutine(ActivarInvulnerabilidad()); // Activar invulnerabilidad e ignorar todas las colisiones con obst�culos
             }
+
         }
     }
 
@@ -96,20 +97,52 @@ public class Jugador : MonoBehaviour
         // Ignorar todas las colisiones con objetos que tengan el tag "Obstaculo"
         IgnorarColisionesConObstaculos(true);
 
+        // Activar inmediatamente la animación de golpeado correspondiente
+        if (isCrouching)
+        {
+            animator.ResetTrigger("GolpeadoRunning");
+            animator.SetTrigger("GolpeadoCrouching");
+            Debug.Log("Jugador golpeado mientras está agachado");
+        }
+        else
+        {
+            animator.ResetTrigger("GolpeadoCrouching");
+            animator.SetTrigger("GolpeadoRunning");
+            Debug.Log("Jugador golpeado mientras está corriendo");
+        }
+
         // Parpadeo del sprite durante la invulnerabilidad
         for (float i = 0; i < duracionInvulnerable; i += 0.2f)
         {
-            spriteRenderer.enabled = false; // Ocultar sprite
-            yield return new WaitForSeconds(0.1f); // Esperar 0.1 segundos
-            spriteRenderer.enabled = true; // Mostrar sprite
-            yield return new WaitForSeconds(0.1f); // Esperar 0.1 segundos
+            spriteRenderer.enabled = false;
+            yield return new WaitForSeconds(0.1f);
+            spriteRenderer.enabled = true;
+            yield return new WaitForSeconds(0.1f);
         }
 
-        // Restaurar las colisiones con obstaculos despues de la invulnerabilidad
+        // Restaurar las colisiones con obstáculos después de la invulnerabilidad
         IgnorarColisionesConObstaculos(false);
 
+        // Restaurar animación normal al finalizar la invulnerabilidad
+        if (isCrouching)
+        {
+            animator.ResetTrigger("GolpeadoCrouching");
+            animator.SetBool("Crouching", true); // Restaurar animación de agachado
+            Debug.Log("Restaurando animación de agachado");
+        }
+        else
+        {
+            animator.ResetTrigger("GolpeadoRunning");
+            animator.SetBool("Crouching", false); // Asegurarse de que no esté agachado
+            animator.Play("DragonRun"); 
+            Debug.Log("Restaurando animación de correr");
+        }
+
         esInvulnerable = false; // Desactivar estado invulnerable
+        Debug.Log("Invulnerabilidad terminada");
     }
+
+
 
     private void IgnorarColisionesConObstaculos(bool ignorar)
     {
