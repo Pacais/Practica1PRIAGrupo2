@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     private bool isSpawning = false;
     public GameObject spawnerObstaculos;
     public GameObject gameOver;
+    public GameObject spaceAnimation;
     public GameObject[] obstaculos;
     public TextMeshProUGUI vidaText;
     public GameObject[] vidas;
@@ -134,6 +135,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         gameOver.SetActive(true);
+        spaceAnimation.SetActive(true); // Activa la animacion
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
