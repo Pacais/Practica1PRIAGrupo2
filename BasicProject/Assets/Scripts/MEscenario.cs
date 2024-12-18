@@ -4,21 +4,17 @@ using UnityEngine;
 
 public class MEscenario : MonoBehaviour
 {
-    private float VMovimiento = 8f;
-    
-    void Start()
-    {
+    private float speed;
 
-    }
-
-    
     void Update()
     {
-        transform.Translate(Vector3.left * VMovimiento * Time.deltaTime);
+        speed = GameManager.gameManager.VMovimiento;
+        transform.Translate(Vector3.left * speed * Time.deltaTime);
 
-        if(transform.position.x <= -transform.localScale.x)
+        // Repeticion de suelo
+        if (transform.position.x <= -22.3f)
         {
-            transform.Translate(Vector3.right * transform.localScale.x * 2f);
+            transform.Translate(Vector3.right * 22.3f * 2f);
         }
     }
 }

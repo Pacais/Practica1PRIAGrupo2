@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MObstaculos : MonoBehaviour
+public class MEnemigos : MonoBehaviour
 {
     private float speed;
 
     void Update()
     {
-        speed = GameManager.gameManager.VMovimiento;
+        speed = 4f + (GameManager.gameManager.VMovimiento);
         transform.Translate(Vector3.left * speed * Time.deltaTime);
         Destroy();
     }
