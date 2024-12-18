@@ -47,7 +47,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-             if (!isSpawning){
+            if (!isSpawning)
+            {
                 float timer = Random.Range(minWait, maxWait);
                 Invoke("Spawn", timer);
                 isSpawning = true;
@@ -56,58 +57,61 @@ public class GameManager : MonoBehaviour
         PuntosTiempo();
         CambioVelocidad();
     }
-//----------------------------------------- SPAWN OBSTACULOS -------------------------------------------------------
+    //----------------------------------------- SPAWN OBSTACULOS -------------------------------------------------------
     private void Spawn()
     {
-        
-        int probabilidad = Random.Range(1,100);
+
+        int probabilidad = Random.Range(1, 100);
         int indice = Probabilidades(probabilidad);
         indice = SpawnPuntos(indice);
         Instantiate(obstaculos[indice], obstaculos[indice].transform.position, Quaternion.identity);
         isSpawning = false;
-
     }
     private int Probabilidades(int probabilidad)
     {
-        switch(probabilidad)    // Probabilidad de que aparezcan cada uno de los prefabs del array (obstaculos)
+        switch (probabilidad)    // Probabilidad de que aparezcan cada uno de los prefabs del array (obstaculos)
         {
             case <= 5: //5%
-                return 5; 
+                return 5;
 
-            case <= 10: //5%
+            case <= 15: //10%
                 return 4;
-            
-            case <= 15: //5%
+
+            case <= 25: //10%
                 return 3;
 
-            case <= 40: //25%
+            case <= 40: //15%
                 return 2;
 
             case <= 70: //30%
                 return 1;
-            
+
             case <= 100: //30%
                 return 0;
-            
+
             default:
-                return 0;               
+                return 0;
         }
     }
 
-    private int SpawnPuntos(int indice){    // Limitar el spawn de obstaculos por puntos
-        if(puntos < 100){
+    private int SpawnPuntos(int indice)
+    {    // Limitar el spawn de obstaculos por puntos
+        if (puntos < 100)
+        {
             indice = 0;
         }
-        else if(puntos < 200){
+        else if (puntos < 200)
+        {
             indice = Random.Range(0, 2);
         }
-        else if(puntos < 300){
+        else if (puntos < 300)
+        {
             indice = Random.Range(0, 3);
         }
         return indice;
     }
 
-//----------------------------------------- PERDER VIDAS -------------------------------------------------------
+    //----------------------------------------- PERDER VIDAS -------------------------------------------------------
     public void ReducirVida()
     {
         vidaJugador--;
@@ -125,7 +129,7 @@ public class GameManager : MonoBehaviour
         vidas[vidaJugador].SetActive(false);
     }
 
-//----------------------------------------- GAME OVER -------------------------------------------------------
+    //----------------------------------------- GAME OVER -------------------------------------------------------
     private void GameOver()
     {
         Time.timeScale = 0f;
@@ -165,7 +169,7 @@ public class GameManager : MonoBehaviour
         puntosTexto.text = string.Format("{0:00000}", puntos);
     }
 
-//----------------------------------------- VIDAS EXTRA -------------------------------------------------------
+    //----------------------------------------- VIDAS EXTRA -------------------------------------------------------
     public void AumentarVida()
     {
         if (vidaJugador < 3)
