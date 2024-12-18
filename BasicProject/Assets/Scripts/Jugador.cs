@@ -5,20 +5,20 @@ using UnityEngine;
 
 public class Jugador : MonoBehaviour
 {
-    private float fuerzaSalto = 25f;
-    private int saltosDisponibles = 2;
-    private Rigidbody2D rb2D;
-    private bool estaEnElSuelo = true;
-    private bool isCrouching = false;
     private GameManager gameManager;
-    private Animator animator;
-    private bool esInvulnerable = false; // Indica si el jugador esta en estado invulnerable
-    private float duracionInvulnerable = 1.0f; // Duracion de la invulnerabilidad
+    private Rigidbody2D rb2D;
     private SpriteRenderer spriteRenderer; // Para manejar el parpadeo del sprite
-    public BoxCollider2D jugadorCollider; // Collider del jugador
-    public BoxCollider2D crouchCollider; // Collider del jugador agachado
+    private Animator animator;
+    public PolygonCollider2D jugadorCollider; // Collider del jugador
+    public PolygonCollider2D crouchCollider; // Collider del jugador agachado
+    private int saltosDisponibles = 2;
+    private float fuerzaSalto = 25f;
+    private float duracionInvulnerable = 1.0f; // Duracion de la invulnerabilidad
+    private bool isCrouching = false;
+    private bool esInvulnerable = false; // Indica si el jugador esta en estado invulnerable
 
-    void Awake(){
+    void Awake()
+    {
         QualitySettings.vSyncCount = 1;
         Application.targetFrameRate = 60;
     }
@@ -27,7 +27,7 @@ public class Jugador : MonoBehaviour
     {
         rb2D = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>(); // Obtenemos el SpriteRenderer del jugador
-        jugadorCollider = GetComponent<BoxCollider2D>(); // Obtenemos el Collider2D del jugador
+        jugadorCollider = GetComponent<PolygonCollider2D>(); // Obtenemos el Collider2D del jugador
         gameManager = FindObjectOfType<GameManager>();
         animator = GetComponent<Animator>();
     }
@@ -35,11 +35,10 @@ public class Jugador : MonoBehaviour
     void Update()
     {
         //--------------------------------------- Salto --------------------------------------------------------
-        if (/*estaEnElSuelo*/ Input.GetKeyDown(KeyCode.Space) && !isCrouching && saltosDisponibles > 0)
+        if (Input.GetKeyDown(KeyCode.Space) && saltosDisponibles > 0)
         {
             animator.SetBool("Jumping", true);  // Activamos la animación con el bool de unity
-            rb2D.AddForce(Vector3.up * fuerzaSalto, ForceMode2D.Impulse);   // Indicamos la direción del salto y la potencia de este. Ponemos ForceMode2D.Force para que sea una cantidad fija.
-            //estaEnElSuelo = false;
+            rb2D.AddForce(Vector3.up * fuerzaSalto, ForceMode2D.Impulse); // Indicamos la direción del salto y la potencia de este. Ponemos ForceMode2D.Force para que sea una cantidad fija.
             saltosDisponibles--;
         }
 
@@ -49,7 +48,6 @@ public class Jugador : MonoBehaviour
             // Activamos el collider agachado y desactivamos el normal
             crouchCollider.enabled = true;
             jugadorCollider.enabled = false;
-            //jugadorCollider.size = new Vector2(3f, 1.5f); // Cambiamos el tamaño del collider al agacharse
             animator.SetBool("Crouching", true);
             isCrouching = true; // Ponemos que está agachado a true
         }
@@ -59,7 +57,6 @@ public class Jugador : MonoBehaviour
             // Dejamos el collider agachado desactivado y activamos el normal
             crouchCollider.enabled = false;
             jugadorCollider.enabled = true;
-            //jugadorCollider.size = new Vector2(1.8f, 2.8f);   // Volvemos al tamaño normal el collider
             isCrouching = false;    // Ponemos que está agachado a false, para que al soltar la tecla pueda volver a agacharse o saltar
         }
     }
@@ -69,7 +66,6 @@ public class Jugador : MonoBehaviour
         if (col.gameObject.CompareTag("Suelo"))
         {
             animator.SetBool("Jumping", false);
-            estaEnElSuelo = true;
             saltosDisponibles = 2;
         }
         else if (col.gameObject.CompareTag("Obstaculo"))

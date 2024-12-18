@@ -8,14 +8,15 @@ public class MObstaculos : MonoBehaviour
 
     void Update()
     {
-        speed = GameManager.gameManager.VMovimiento; 
+        speed = GameManager.gameManager.VMovimiento;
         transform.Translate(Vector3.left * speed * Time.deltaTime);
         Destroy();
     }
 
     private void Destroy()
     {
-        if(transform.position.x <= -15f){
+        if (transform.position.x <= -15f)
+        {
             Destroy(gameObject);
         }
     }
