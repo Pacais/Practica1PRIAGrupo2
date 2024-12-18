@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class MEnemigos : MonoBehaviour
 {
-    private float VMovimiento = 12f;
-    public GameObject spawnerEnemigos;
+    private float speed;
 
     void Update()
     {
-        transform.Translate(Vector3.left * VMovimiento * Time.deltaTime);
+        speed = 4f + (GameManager.gameManager.VMovimiento);
+        transform.Translate(Vector3.left * speed * Time.deltaTime);
         Destroy();
     }
 
     private void Destroy()
     {
-        if (transform.position.y <= -12f)
+        if (transform.position.x <= -15f)
         {
             Destroy(gameObject);
         }

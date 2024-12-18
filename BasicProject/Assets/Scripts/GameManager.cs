@@ -10,41 +10,33 @@ public class GameManager : MonoBehaviour
     public static GameManager gameManager;
     private int puntosSiguienteVida;
     private int puntos;
-    public int puntosSegundo = 10;
-    public int vidaJugador = 3;
-    public int puntosParaVidaExtra = 1000;
-    public float VMovimiento = 8f;
-    private float minWaitObstaculos;
-    private float maxWaitObstaculos;
-    private float minWaitEnemigos;
-    private float maxWaitEnemigos;
+    private int puntosSegundo = 10;
+    private int vidaJugador = 3;
+    private int puntosParaVidaExtra = 1000;
+    private float minWait = 2f;
+    private float maxWait = 3f;
     private float timer;
-    private bool isSpawningObstaculos;
-    private bool isSpawningEnemigos;
-    public GameObject obstaculoPrefab;
-    public GameObject enemigoPrefab;
+    public float VMovimiento = 8f;
+    private bool isSpawning = false;
     public GameObject spawnerObstaculos;
-    public GameObject spawnerEnemigos;
     public GameObject gameOver;
+    public GameObject spaceAnimation;
+    public GameObject[] obstaculos;
     public TextMeshProUGUI vidaText;
     public GameObject[] vidas;
 
-    void Awake(){
-        if(gameManager != null && gameManager !=this){
+    void Awake()
+    {
+        if (gameManager != null && gameManager != this)
+        {
             Destroy(gameObject);
             return;
         }
-        gameManager=this;
-
+        gameManager = this;
     }
+
     void Start()
     {
-        isSpawningObstaculos = false;
-        isSpawningEnemigos = false;
-        minWaitObstaculos = 1f;
-        maxWaitObstaculos = 2.5f;
-        minWaitEnemigos = 2f;
-        maxWaitEnemigos = 4f;
         puntos = 0;
     }
 
@@ -52,51 +44,79 @@ public class GameManager : MonoBehaviour
     {
         if (vidaJugador <= 0)
         {
-
             GameOver();
         }
         else
         {
-            if (!isSpawningObstaculos)
+            if (!isSpawning)
             {
-                float timer = Random.Range(minWaitObstaculos, maxWaitObstaculos);
-                Invoke("SpawnObjects", timer);
-                isSpawningObstaculos = true;
-            }
-
-            if (!isSpawningEnemigos)
-            {
-                float timer = Random.Range(minWaitEnemigos, maxWaitEnemigos);
-                Invoke("SpawnEnemigos", timer);
-                isSpawningEnemigos = true;
+                float timer = Random.Range(minWait, maxWait);
+                Invoke("Spawn", timer);
+                isSpawning = true;
             }
         }
         PuntosTiempo();
         CambioVelocidad();
     }
-
-    private void SpawnObjects()
-    {
-        Instantiate(obstaculoPrefab, spawnerObstaculos.transform.position, Quaternion.identity);
-        isSpawningObstaculos = false;
-    }
-
-    private void SpawnEnemigos()
+    //----------------------------------------- SPAWN OBSTACULOS -------------------------------------------------------
+    private void Spawn()
     {
 
-    float alturaDeseada = 5f; 
-    Vector3 nuevaPosicion = new Vector3(
-        spawnerObstaculos.transform.position.x,
-        alturaDeseada,
-        spawnerObstaculos.transform.position.z   
-    );
+        int probabilidad = Random.Range(1, 100);
+        int indice = Probabilidades(probabilidad);
+        indice = SpawnPuntos(indice);
+        Instantiate(obstaculos[indice], obstaculos[indice].transform.position, Quaternion.identity);
+        isSpawning = false;
+    }
+    private int Probabilidades(int probabilidad)
+    {
+        switch (probabilidad)    // Probabilidad de que aparezcan cada uno de los prefabs del array (obstaculos)
+        {
+            case <= 10: //10%
+                return 5;
 
-        
-    Instantiate(enemigoPrefab, nuevaPosicion, Quaternion.identity);
+            case <= 20: //10%
+                return 4;
 
-    isSpawningEnemigos = false;
+            case <= 30: //10%
+                return 3;
+
+            case <= 40: //10%
+                return 2;
+
+            case <= 70: //30%
+                return 1;
+
+            case <= 100: //30%
+                return 0;
+
+            default:
+                return 0;
+        }
     }
 
+    private int SpawnPuntos(int indice)
+    {    // Limitar el spawn de obstaculos por puntos
+        if (puntos < 100)
+        {
+            indice = 0;
+        }
+        else if (puntos < 200)
+        {
+            indice = Random.Range(0, 2);
+        }
+        else if (puntos < 300)
+        {
+            indice = Random.Range(0, 3);
+        }
+        else if(puntos > 600 && indice == 2)
+        {
+            indice = Random.Range(3,6);
+        }
+        return indice;
+    }
+
+    //----------------------------------------- PERDER VIDAS -------------------------------------------------------
     public void ReducirVida()
     {
         vidaJugador--;
@@ -109,17 +129,17 @@ public class GameManager : MonoBehaviour
         RestarVidaUI();
     }
 
-
-
     private void RestarVidaUI()
     {
         vidas[vidaJugador].SetActive(false);
     }
 
+    //----------------------------------------- GAME OVER -------------------------------------------------------
     private void GameOver()
     {
         Time.timeScale = 0f;
         gameOver.SetActive(true);
+        spaceAnimation.SetActive(true); // Activa la animacion
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -152,24 +172,25 @@ public class GameManager : MonoBehaviour
             AumentarVida();
             puntosSiguienteVida += puntosParaVidaExtra;
         }
-        Debug.Log(puntos);
         puntosTexto.text = string.Format("{0:00000}", puntos);
     }
 
+    //----------------------------------------- VIDAS EXTRA -------------------------------------------------------
     public void AumentarVida()
     {
         if (vidaJugador < 3)
         {
             vidas[vidaJugador].SetActive(true);
             vidaJugador++;
-            Debug.Log(vidaJugador);
         }
     }
     private void CambioVelocidad()
     {
-        if (puntos % 100 == 0 && puntos > 0){
-            VMovimiento *= 1.03f;
-            Debug.Log(VMovimiento);
+        if (puntos % 200 == 0 && puntos > 0)
+        {
+            VMovimiento *= 1.02f;
+            minWait *= 0.97f;
+            maxWait *= 0.97f;
         }
     }
 }
