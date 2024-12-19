@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public GameObject gameOver;
     public GameObject spaceAnimation;
     public GameObject[] obstaculos;
+    public AudioSource music;
     public TextMeshProUGUI vidaText;
     public GameObject[] vidas;
 
@@ -39,6 +40,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         puntos = 0;
+        music.Play();
+        
     }
 
     void Update()
@@ -120,6 +123,7 @@ public class GameManager : MonoBehaviour
 
         if (vidaJugador <= 0)
         {
+            music.Pause();
             GameOver();
         }
 
@@ -137,6 +141,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         gameOver.SetActive(true);
         spaceAnimation.SetActive(true); // Activa la animacion
+        
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
