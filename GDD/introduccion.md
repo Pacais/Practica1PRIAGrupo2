@@ -1,10 +1,8 @@
 # Introducción
-O xogo tratarase dun "autorunner", é dicir, un xogo no que o xogador avanzará nunha dirección automáticamente. O xogador terá que evitar obstáculos que se aproximarán a él saltando ou agachándose. O público obxectivo será calquera persona que teña 5 minutos libres para gastar nunha experiencia simple pero divertida. O rango de idade serán personas de 3 a 99 anos.
+Dragon Run trátase dunha experiencia corta para windows e móviles Android. O xogador controla a un dragonciño que debe escapar dunha cova na que se caeu intentando aprender a voar. Para iso deberá evitar os monstros e obstáculos que se crucen no seu camiño. 
 
 ## Descripción
-+ Xénero: Plataformas/autorunner
-+ Obxectivos: Ganar puntos ao sobrevir o maior tempo posibé sin que as vidas do xogador cheguen a cero por mor de chocar con obstáculos.
-+ Mecánicas: O xogador pode saltar e agocharse para evitar obstáculos. Tamén haberá un sistema de vidas e de puntuación.
+O xogo tratarase dun "autorunner", é dicir, un xogo no que o xogador avanzará nunha dirección automáticamente. O xogador terá que evitar obstáculos que se aproximarán a él saltando ou agachándose. O público obxectivo será calquera persona que teña 5 minutos libres para gastar nunha experiencia simple pero divertida. O rango de idade serán personas de 3 a 99 anos.
 
 ## Trasfondo
 Este xogo estaría inspirado por xogos como Geometry Dash ou o Dinosaur Game (o xogo que aparece cando te quedas sin conexión a internet en google chrome).
@@ -19,7 +17,11 @@ Este xogo estaría inspirado por xogos como Geometry Dash ou o Dinosaur Game (o 
     + Terceiro nivel: Estes obstáculos aparecerán encima do xogador, castigandoo no caso no que saltase nun mal momento.
 - Nivel
   + En cuestión de programación, o xogador non se desplaza horizontalmente, senon que o escenario se move en dirección do xogador. O nivel repetirase indifinidamente ata que o xogador perda todas as súas vidas.
-  + A velocidade de desplazamento aumentará cada certo intervalo de tempo [*EDITAR CO TEMPO EXACTO*], e polo tanto a dificultade do xogo tamén aumentará.
+  + A velocidade de desplazamento aumentará cada 200 puntos, e con ela a dificultade do xogo.
 - Puntuación
   + O xogador acumulará puntos durante o tempo que se manteña con vida.
   + Canto máis aumente a velocidade do xogo máis puntos se ganarán por segundo.
+
+## Características clave
+- <ins>Autorunner</ins>: O xogo está planteado de forma na que o movemento é automático e só precisa dúas teclas para levar a cabo as mecánicas do xogo, inspirándose en cláiscos arcade e xogos pioneiros para dispositivos móviles
+- <ins>Obstáculos</ins>: Utilízase un sistema de niveles para xestionar os distintos obstáculos que o xogador debe evitar. O primeiro nivel, a ras de suelo, obligará ao xogador a saltar. No segundo nivel de altura, o obstáculo poderá evitarse saltando sobre él ou agachándose. Os obstáculos de terceiro teñen o obxectivo de castigar un mal uso dos saltos do xogador
