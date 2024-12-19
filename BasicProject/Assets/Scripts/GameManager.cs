@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     TMP_Text puntosTexto;
     public static GameManager gameManager;
+    private AudioSource music;
     private int puntosSiguienteVida;
     private int puntos;
     private int puntosSegundo = 10;
@@ -37,7 +38,16 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        // Obtener y configurar el AudioSource
+        music = GetComponent<AudioSource>();
         puntos = 0;
+
+        // Configurar la música para que empiece en bucle y se reproduzca al inicio
+        if (music != null)
+        {
+            music.loop = true;  // Asegurarse de que la música haga bucle
+            music.Play();       // Comienza la música al iniciar el juego
+        }
     }
 
     void Update()
@@ -58,10 +68,10 @@ public class GameManager : MonoBehaviour
         PuntosTiempo();
         CambioVelocidad();
     }
+
     //----------------------------------------- SPAWN OBSTACULOS -------------------------------------------------------
     private void Spawn()
     {
-
         int probabilidad = Random.Range(1, 100);
         int indice = Probabilidades(probabilidad);
         indice = SpawnPuntos(indice);
@@ -139,12 +149,15 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         gameOver.SetActive(true);
-        spaceAnimation.SetActive(true); // Activa la animacion
+        spaceAnimation.SetActive(true); // Activa la animación
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        // Detener la música al Game Over
+        if (music != null)
         {
-            ReiniciarJuego();
+            music.Pause(); // Detiene la música
         }
+
+        // Aquí podrías mostrar un mensaje de Game Over en la UI
     }
 
     private void ReiniciarJuego()
@@ -153,7 +166,12 @@ public class GameManager : MonoBehaviour
         vidaJugador = 3;
         gameOver.SetActive(false);
 
+        // Reiniciar la escena (recargar la misma escena)
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+
+        // Volver a iniciar la música al comenzar una nueva partida
+        music.Play();   // Y luego la reiniciamos
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -165,7 +183,6 @@ public class GameManager : MonoBehaviour
     {
         timer += Time.deltaTime;
         puntos = (int)(timer * puntosSegundo);
-
 
         if (puntos >= puntosSiguienteVida)
         {
@@ -184,6 +201,7 @@ public class GameManager : MonoBehaviour
             vidaJugador++;
         }
     }
+
     private void CambioVelocidad()
     {
         if (puntos % 200 == 0 && puntos > 0)
