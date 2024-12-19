@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    public void LoadScene(string sceneName)
+    void Update()
     {
-        SceneManager.LoadScene(1);
+        if(Input.GetKeyDown(KeyCode.Space)){
+            SceneManager.LoadScene(sceneName:"Game");
+        }
     }
 }

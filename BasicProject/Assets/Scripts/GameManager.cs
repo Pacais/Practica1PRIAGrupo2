@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
     TMP_Text puntosTexto;
     public static GameManager gameManager;
-    private AudioSource music;
     private int puntosSiguienteVida;
     private int puntos;
     private int puntosSegundo = 10;
     private int vidaJugador = 3;
     private int puntosParaVidaExtra = 1000;
-    private float minWait = 2f;
+    private float minWait = 1f;
     private float maxWait = 3f;
     private float timer;
     public float VMovimiento = 8f;
@@ -38,16 +38,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        // Obtener y configurar el AudioSource
-        music = GetComponent<AudioSource>();
         puntos = 0;
-
-        // Configurar la música para que empiece en bucle y se reproduzca al inicio
-        if (music != null)
-        {
-            music.loop = true;  // Asegurarse de que la música haga bucle
-            music.Play();       // Comienza la música al iniciar el juego
-        }
     }
 
     void Update()
@@ -68,10 +59,10 @@ public class GameManager : MonoBehaviour
         PuntosTiempo();
         CambioVelocidad();
     }
-
     //----------------------------------------- SPAWN OBSTACULOS -------------------------------------------------------
     private void Spawn()
     {
+
         int probabilidad = Random.Range(1, 100);
         int indice = Probabilidades(probabilidad);
         indice = SpawnPuntos(indice);
@@ -82,16 +73,16 @@ public class GameManager : MonoBehaviour
     {
         switch (probabilidad)    // Probabilidad de que aparezcan cada uno de los prefabs del array (obstaculos)
         {
-            case <= 10: //10%
+            case <= 5: //5%
                 return 5;
 
-            case <= 20: //10%
+            case <= 15: //10%
                 return 4;
 
-            case <= 30: //10%
+            case <= 25: //10%
                 return 3;
 
-            case <= 40: //10%
+            case <= 40: //15%
                 return 2;
 
             case <= 70: //30%
@@ -119,10 +110,6 @@ public class GameManager : MonoBehaviour
         {
             indice = Random.Range(0, 3);
         }
-        else if(puntos > 600 && indice == 2)
-        {
-            indice = Random.Range(3,6);
-        }
         return indice;
     }
 
@@ -149,15 +136,12 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         gameOver.SetActive(true);
-        spaceAnimation.SetActive(true); // Activa la animación
+        spaceAnimation.SetActive(true); // Activa la animacion
 
-        // Detener la música al Game Over
-        if (music != null)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            music.Pause(); // Detiene la música
+            ReiniciarJuego();
         }
-
-        // Aquí podrías mostrar un mensaje de Game Over en la UI
     }
 
     private void ReiniciarJuego()
@@ -166,12 +150,7 @@ public class GameManager : MonoBehaviour
         vidaJugador = 3;
         gameOver.SetActive(false);
 
-        // Reiniciar la escena (recargar la misma escena)
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
-
-        // Volver a iniciar la música al comenzar una nueva partida
-        music.Play();   // Y luego la reiniciamos
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -183,6 +162,7 @@ public class GameManager : MonoBehaviour
     {
         timer += Time.deltaTime;
         puntos = (int)(timer * puntosSegundo);
+
 
         if (puntos >= puntosSiguienteVida)
         {
@@ -201,12 +181,11 @@ public class GameManager : MonoBehaviour
             vidaJugador++;
         }
     }
-
     private void CambioVelocidad()
     {
         if (puntos % 200 == 0 && puntos > 0)
         {
-            VMovimiento *= 1.02f;
+            VMovimiento *= 1.03f;
             minWait *= 0.97f;
             maxWait *= 0.97f;
         }
