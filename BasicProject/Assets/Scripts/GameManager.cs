@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class GameManager : MonoBehaviour
     private int puntosSegundo = 10;
     private int vidaJugador = 3;
     private int puntosParaVidaExtra = 1000;
-    private float minWait = 2f;
+    private float minWait = 1f;
     private float maxWait = 3f;
     private float timer;
     public float VMovimiento = 8f;
@@ -72,16 +73,16 @@ public class GameManager : MonoBehaviour
     {
         switch (probabilidad)    // Probabilidad de que aparezcan cada uno de los prefabs del array (obstaculos)
         {
-            case <= 10: //10%
+            case <= 5: //5%
                 return 5;
 
-            case <= 20: //10%
+            case <= 15: //10%
                 return 4;
 
-            case <= 30: //10%
+            case <= 25: //10%
                 return 3;
 
-            case <= 40: //10%
+            case <= 40: //15%
                 return 2;
 
             case <= 70: //30%
@@ -108,10 +109,6 @@ public class GameManager : MonoBehaviour
         else if (puntos < 300)
         {
             indice = Random.Range(0, 3);
-        }
-        else if(puntos > 600 && indice == 2)
-        {
-            indice = Random.Range(3,6);
         }
         return indice;
     }
@@ -188,7 +185,7 @@ public class GameManager : MonoBehaviour
     {
         if (puntos % 200 == 0 && puntos > 0)
         {
-            VMovimiento *= 1.02f;
+            VMovimiento *= 1.03f;
             minWait *= 0.97f;
             maxWait *= 0.97f;
         }
