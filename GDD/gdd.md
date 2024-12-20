@@ -51,4 +51,12 @@ Ao ser unha experiencia arcade corta o fluxo e moi simple. Ao iniciar o xogo o d
 - Cristal + Araña: Esta combinación de obstáculos obligará ao dragón a medir un só salto para pasar entre ambo-los dous obxectos.
 - Araña + Morcego: Cando estas criaturas se unen o dragón verase obrigado a agacharse para non perder unha vida.
 
- 
+## Físicas
+En canto a movemento o dragón pode facer un salto de lonxitude fixa desde o suelo, e logo outro salto máis mentres esté no aire. Estes dous saltos son os que lle permitirá esquivar casi todos os obstáculos.
+Por outra parte a velocidade do xogo aumenta lentamente pero de forma exponencial ao subir a puntuación. Como a nivel de programación o que está en movemento e o escenario e os obstáculos e non o dragón, este movemento non interfire coas físicas.
+Por outro lado o dragón pódese agachar, o que reducirá a súa hitbox verticalmente e será capaz de evitar os morcegos e as arañas coas que se atope.
+
+## Controles
+Solo se usan dúas teclas:
+  - Espacio: Salto e doble salto
+  - Shift: Agacharse
