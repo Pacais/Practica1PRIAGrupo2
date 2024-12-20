@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     TMP_Text puntosTexto;
     public static GameManager gameManager;
+    public MusicManager musicManager;
     private int puntosSiguienteVida;
     private int puntos;
     private int puntosSegundo = 10;
@@ -23,7 +24,6 @@ public class GameManager : MonoBehaviour
     public GameObject gameOver;
     public GameObject spaceAnimation;
     public GameObject[] obstaculos;
-    public AudioSource music;
     public TextMeshProUGUI vidaText;
     public GameObject[] vidas;
 
@@ -40,8 +40,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         puntos = 0;
-        music.Play();
-        
+
     }
 
     void Update()
@@ -123,7 +122,6 @@ public class GameManager : MonoBehaviour
 
         if (vidaJugador <= 0)
         {
-            music.Pause();
             GameOver();
         }
 
@@ -138,10 +136,15 @@ public class GameManager : MonoBehaviour
     //----------------------------------------- GAME OVER -------------------------------------------------------
     private void GameOver()
     {
+        if (musicManager != null)
+        {
+            musicManager.StopMusic();
+        }
+
         Time.timeScale = 0f;
         gameOver.SetActive(true);
         spaceAnimation.SetActive(true); // Activa la animacion
-        
+
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -151,6 +154,11 @@ public class GameManager : MonoBehaviour
 
     private void ReiniciarJuego()
     {
+        if (musicManager != null)
+        {
+            musicManager.RestartMusic();
+        }
+
         Time.timeScale = 1f;
         vidaJugador = 3;
         gameOver.SetActive(false);
