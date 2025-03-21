@@ -127,12 +127,14 @@ public class Jugador : MonoBehaviour
         if (isCrouching)
         {
             animator.ResetTrigger("GolpeadoCrouching");
+            animator.ResetTrigger("GolpeadoRunning");
             animator.SetBool("Crouching", true); // Restaurar animación de agachado
             Debug.Log("Restaurando animación de agachado");
         }
         else
         {
             animator.ResetTrigger("GolpeadoRunning");
+            animator.ResetTrigger("GolpeadoCrouching");
             animator.SetBool("Crouching", false); // Asegurarse de que no esté agachado
             animator.Play("DragonRun"); 
             Debug.Log("Restaurando animación de correr");
