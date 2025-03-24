@@ -60,6 +60,13 @@ public class GameManager : MonoBehaviour
         }
         PuntosTiempo();
         CambioVelocidad();
+
+        // Verificar si la tecla Esc está presionada
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit(); // Cerrar el juego
+            
+        }
     }
     //----------------------------------------- SPAWN OBSTACULOS -------------------------------------------------------
     private void Spawn()
